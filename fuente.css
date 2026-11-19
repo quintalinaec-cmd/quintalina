@@ -1,0 +1,74 @@
+/* =====================================================
+   FUENTES PERSONALIZADAS - QUINTA LINA
+   ===================================================== */
+
+@font-face {
+    font-family: "Audiowide-Regular";
+    src: url("Fuentes/Audiowide-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "JockeyOne-Regular";
+    src: url("Fuentes/JockeyOne-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* =====================================================
+   VARIABLES DE FUENTES
+   ===================================================== */
+
+:root {
+    --fuente-marca: "Audiowide-Regular", sans-serif;
+    --fuente-titulos: "JockeyOne-Regular", sans-serif;
+}
+
+
+/* =====================================================
+   MARCA
+   ===================================================== */
+
+.brand {
+    font-family: var(--fuente-marca);
+}
+
+
+/* =====================================================
+   TÍTULOS ESPECIALES
+   ===================================================== */
+
+.card h3 {
+    font-family: var(--fuente-titulos);
+}
+
+.small-title {
+    font-family: var(--fuente-marca);
+}
+
+.section-label {
+    font-family: var(--fuente-marca);
+}
+
+
+/* =====================================================
+   ANIMACIÓN DE APARICIÓN
+   ===================================================== */
+
+@keyframes fadeInText {
+
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}

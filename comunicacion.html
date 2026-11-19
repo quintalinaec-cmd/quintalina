@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contacto, Reservas y Mapa Interactivo — DFV company.co">
+    <title>Contacto, Reservas & Mapa — DFV company.co</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --obsidian: #05030a;
+            --obsidian-card: rgba(18, 12, 30, 0.85);
+            --gold-hot: #ffd740;
+            --gold-champagne: #fae1aa;
+            --neon-cyan: #00f0ff;
+            --neon-magenta: #ff007f;
+            --neon-purple: #bd00ff;
+            --text-light: #fdfdfd;
+            --text-dim: #b8b2cb;
+            --border-dyn: rgba(255, 215, 64, 0.35);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--obsidian);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            background-image: 
+                radial-gradient(circle at 15% 10%, rgba(189, 0, 255, 0.22) 0%, transparent 42%),
+                radial-gradient(circle at 85% 80%, rgba(255, 0, 127, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.12) 0%, transparent 55%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* HEADER LIMPIO (SOLO LOGO Y RESERVAR) */
+        .header {
+            position: relative;
+            background: linear-gradient(135deg, rgba(5,3,10,0.62) 0%, rgba(30,12,45,0.70) 100%),
+                        url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+            border-bottom: 1px solid var(--border-dyn);
+            min-height: 540px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu.container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(5, 15, 30, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 215, 64, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #fff, var(--gold-hot), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        /* Botón estilo Kosmetria para Reservar en el header */
+        .btn-kosmetria-gold {
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.4), rgba(245, 158, 11, 0.6));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 64, 0.6);
+            box-shadow: 0 4px 20px rgba(217, 119, 6, 0.3);
+            transition: all 0.3s ease;
+            color: var(--gold-champagne);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-kosmetria-gold:hover {
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.6), rgba(245, 158, 11, 0.8));
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .header-txt {
+            text-align: center;
+            padding: 40px 20px 60px;
+            margin: auto;
+        }
+
+        .header-txt span {
+            color: var(--neon-cyan);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-shadow: 0 0 14px rgba(0, 240, 255, 0.7);
+        }
+
+        .header-txt h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            margin: 15px 0;
+            background: linear-gradient(135deg, #fff 25%, var(--gold-hot) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 15px 45px rgba(0,0,0,0.85);
+        }
+
+        .header-txt p {
+            color: #eae6f5;
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+        }
+
+        /* Botones centrales estilo Kosmetria */
+        .center-nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn-kosmetria-dark {
+            background: rgba(40, 40, 40, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 64, 0.3);
+            color: var(--text-light);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn-kosmetria-dark:hover {
+            background: rgba(60, 60, 60, 0.85);
+            border-color: rgba(255, 215, 64, 0.6);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .header-txt h1 { font-size: 2.5rem; }
+        }
+
+        /* Títulos de sección con pulso neón/oro */
+        .section-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+        .section-header span {
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            margin: 10px 0;
+            color: #fff;
+        }
+        .dyn-divider {
+            width: 90px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-magenta), var(--gold-hot), var(--neon-cyan));
+            border-radius: 99px;
+            margin: 15px auto 0;
+            box-shadow: 0 0 15px rgba(255, 215, 64, 0.4);
+        }
+
+        /* Tarjetas de contacto ultra dinámicas */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 28px;
+            margin-bottom: 80px;
+        }
+        .card-custom {
+            background: var(--obsidian-card);
+            border: 1px solid var(--border-dyn);
+            border-radius: 24px;
+            padding: 35px 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(15px);
+        }
+        .card-custom::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.08), transparent);
+            transition: left 0.6s ease;
+        }
+        .card-custom:hover::before { left: 100%; }
+        .card-custom:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 35px rgba(0, 240, 255, 0.25);
+        }
+        .card-custom i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--gold-hot), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .card-custom h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .card-custom p {
+            color: var(--text-dim);
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        /* Central de Experiencias dinámicas */
+        .booking-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 28px;
+            margin-bottom: 85px;
+        }
+        .booking-card {
+            background: var(--obsidian-card);
+            border: 1px solid var(--border-dyn);
+            border-radius: 24px;
+            padding: 32px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .booking-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-magenta);
+            box-shadow: 0 25px 55px rgba(0,0,0,0.9), 0 0 35px rgba(255, 0, 127, 0.3);
+        }
+        .booking-card .top-content i {
+            font-size: 2.2rem;
+            color: var(--gold-hot);
+            margin-bottom: 18px;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 64, 0.4));
+        }
+        .booking-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .booking-card p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px 22px;
+            border-radius: 99px;
+            background: linear-gradient(135deg, rgba(255,215,64,0.18) 0%, rgba(0,240,255,0.18) 100%);
+            border: 1px solid var(--neon-cyan);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.35s ease;
+        }
+        .btn-action.magenta {
+            background: linear-gradient(135deg, rgba(255,0,127,0.25) 0%, rgba(189,0,255,0.28) 100%);
+            border-color: var(--neon-magenta);
+        }
+        .btn-action:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 240, 255, 0.45);
+        }
+        .btn-action.magenta:hover {
+            box-shadow: 0 12px 30px rgba(255, 0, 127, 0.45);
+        }
+
+        /* Mapa super chido modo ciber-oscuro */
+        .mapa-seccion { margin-bottom: 85px; }
+        .map-box {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid var(--border-dyn);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.9), 0 0 40px rgba(0, 240, 255, 0.2);
+            background: var(--obsidian-card);
+        }
+        .map-box::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            pointer-events: none;
+            box-shadow: inset 0 0 40px rgba(0, 240, 255, 0.15);
+        }
+        .map-box iframe {
+            width: 100%;
+            height: 500px;
+            border: 0;
+            filter: invert(92%) hue-rotate(185deg) brightness(92%) contrast(95%);
+        }
+        .map-info-tag {
+            text-align: center;
+            margin-top: 22px;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+        .map-info-tag strong { color: var(--gold-hot); }
+
+        /* FAQ Estilizado neón/oro */
+        .faq-wrapper {
+            max-width: 920px;
+            margin: 0 auto 90px;
+            background: var(--obsidian-card);
+            border: 1px solid var(--border-dyn);
+            border-radius: 28px;
+            padding: 45px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+        }
+        .faq-item {
+            margin-bottom: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s ease;
+        }
+        .faq-item:hover { transform: translateX(5px); }
+        .faq-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .faq-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold-hot);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .faq-item h3 i { color: var(--neon-cyan); font-size: 1.15rem; filter: drop-shadow(0 0 8px rgba(0,240,255,0.5)); }
+        .faq-item p { color: var(--text-dim); font-size: 0.94rem; line-height: 1.68; padding-left: 30px; }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-dyn);
+            padding: 65px 20px 30px;
+            background: rgba(5,3,10,0.98);
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer .link h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 15px;
+            color: var(--gold-hot);
+        }
+        .footer .link a, .footer .link p {
+            display: block;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 0.92rem;
+            transition: color 0.3s;
+        }
+        .footer .link a:hover { color: var(--neon-cyan); text-shadow: 0 0 8px rgba(0,240,255,0.5); }
+        .copyright {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            margin-top: 55px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+    <div class="menu container">
+        <!-- LOGO / MARCA EN LÍNEA -->
+        <a href="comunicacion.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+            <span style="font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: bold; letter-spacing: 0.2em; color: #fef3c7;">DFV</span>
+            <span style="font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.1em; color: #fde68a; border-left: 1px solid rgba(251, 191, 36, 0.5); padding-left: 8px;">COMPANY & CO.</span>
+        </a>
+        <a href="https://wa.me/593983842601" class="btn-kosmetria-gold">
+            <i class="fas fa-calendar-check"></i> Reservar
+        </a>
+    </div>
+    <div class="header-txt">
+        <span>Ecosistema Global • Concierge & Enlace</span>
+        <h1>Contacto, Reservas & Mapa</h1>
+        <p>Conecta en tiempo real con nuestras sedes, equipo de atención y experiencias integradas.</p>
+        
+        <!-- Botones centrales al medio -->
+        <div class="center-nav-buttons">
+            <a href="index.html" class="btn-kosmetria-dark">
+                <i class="fas fa-home text-amber-400"></i> Inicio
+            </a>
+            <a href="comunicacion.html" class="btn-kosmetria-dark" style="border-color: var(--neon-cyan);">
+                <i class="fas fa-map-marked-alt" style="color: var(--neon-cyan);"></i> Contacto & Mapa
+            </a>
+        </div>
+    </div>
+</header>
+
+    <main class="container" style="padding: 85px 20px;">
+
+        <!-- Canales Directos -->
+        <div class="info-grid">
+            <div class="card-custom">
+                <i class="fas fa-map-marked-alt"></i>
+                <h3>Ubicación Base</h3>
+                <p>Ambato, Huachi Grande, Ecuador.<br><small style="color:var(--neon-cyan); font-weight:500;">Refugio natural & santuario holístico</small></p>
+            </div>
+            <div class="card-custom">
+                <i class="fab fa-whatsapp"></i>
+                <h3>Atención Directa</h3>
+                <p>WhatsApp Oficial: +593 983 842 601<br>Fijo: +593 (03) 299 9999</p>
+            </div>
+            <div class="card-custom">
+                <i class="fas fa-envelope"></i>
+                <h3>Correo Oficial</h3>
+                <p>quintalina.ec@gmail.com<br>quintalina.ec@gmail.com</p>
+            </div>
+        </div>
+
+        <!-- Central de Reservas Integrada -->
+        <div class="section-header">
+            <span>Cotizador & Acceso Rápido</span>
+            <h2>Elige tu Experiencia</h2>
+            <div class="dyn-divider"></div>
+        </div>
+
+        <div class="booking-grid">
+            <div class="booking-card">
+                <div class="top-content">
+                    <i class="fas fa-home"></i>
+                    <h3>Hospedaje Quinta Lina</h3>
+                    <p>Reserva tu habitación o estancia completa en nuestro refugio de naturaleza en Ambato.</p>
+                </div>
+                <a href="#airbnb-ql" class="btn-action"><i class="fab fa-airbnb"></i> Ver en Airbnb</a>
+            </div>
+            <div class="booking-card">
+                <div class="top-content">
+                    <i class="fas fa-spa"></i>
+                    <h3>Cita en Kosmetria</h3>
+                    <p>Agenda faciales, masajes relajantes o terapias holísticas (Sound Bath, Limpia Andina).</p>
+                </div>
+                <a href="https://wa.me/593983842601?text=Hola,%20deseo%20reservar%20una%20cita%20en%20Kosmetria" target="_blank" class="btn-action magenta"><i class="fab fa-whatsapp"></i> Agendar WhatsApp</a>
+            </div>
+            <div class="booking-card">
+                <div class="top-content">
+                    <i class="fas fa-umbrella-beach"></i>
+                    <h3>Marina Bay — Manta</h3>
+                    <p>Disfruta de nuestra casa vacacional completa en la costa ecuatoriana para viajes de grupo.</p>
+                </div>
+                <a href="#airbnb-mb" class="btn-action"><i class="fab fa-airbnb"></i> Ver Marina Bay</a>
+            </div>
+            <div class="booking-card">
+                <div class="top-content">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Eventos & Retiros</h3>
+                    <p>Cotiza fechas para celebraciones privadas, bodas en prado o talleres corporativos.</p>
+                </div>
+                <a href="https://wa.me/593983842601?text=Hola,%20deseo%20cotizar%20un%20evento%20con%20DFV" target="_blank" class="btn-action magenta"><i class="fas fa-glass-cheers"></i> Cotizar Evento</a>
+            </div>
+        </div>
+
+        <!-- Mapa Super Chido -->
+        <div class="section-header">
+            <span>Encuéntranos Fácilmente</span>
+            <h2>Nuestra Ubicación</h2>
+            <div class="dyn-divider"></div>
+        </div>
+
+        <section class="mapa-seccion">
+            <div class="map-box">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d935.4!2d-78.64625!3d-1.324944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTknMjkuOCJTIDc4wrAzOCc0Ni.1Ilc!5e0!3m2!1ses!2sec!4v1700000000000!5m2!1ses!2sec" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <p class="map-info-tag">
+                <strong>Quinta Lina • Ambato, Tungurahua.</strong> Haz clic o interactúa con el mapa para abrir indicaciones directas en tu app GPS.
+            </p>
+        </section>
+
+        <!-- Preguntas Frecuentes (FAQ) -->
+        <div class="section-header">
+            <span>Resuelve tus Dudas</span>
+            <h2>Preguntas Frecuentes (FAQ)</h2>
+            <div class="dyn-divider"></div>
+        </div>
+
+        <div class="faq-wrapper">
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> ¿Puedo reservar en Kosmetria sin hospedarme?</h3>
+                <p>Sí, todos los tratamientos faciales, masajes y sesiones holísticas están disponibles con cita previa para visitantes externos.</p>
+            </div>
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> ¿Se aceptan mascotas en Quinta Lina?</h3>
+                <p>Somos un espacio amigable con el entorno. Consulta nuestras políticas específicas de mascotas al realizar tu reserva.</p>
+            </div>
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> ¿Cómo puedo cotizar la casa Marina Bay en Manta?</h3>
+                <p>Puedes solicitar el enlace directo de Airbnb o la tarifa por noche directamente por nuestro canal de WhatsApp oficial.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="link">
+                <h3>Navegación</h3>
+                <a href="index.html">Inicio</a>
+                <a href="comunicacion.html">Contacto & Mapa</a>
+            </div>
+            <div class="link">
+                <h3>DFV company.co Group</h3>
+                <p><i class="fab fa-whatsapp"></i> Reservas: +593 98 384 2601</p>
+                <p><i class="fas fa-envelope"></i> quintalina.ec@gmail.com</p>
+            </div>
+        </div>
+        <p class="copyright">© 2026 DFV company.co. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

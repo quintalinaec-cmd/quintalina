@@ -1,0 +1,1259 @@
+/* =====================================================
+   QUINTA LINA
+   Nature Retreat & Wellness Experience
+   ===================================================== */
+
+
+/* ================= VARIABLES ================= */
+
+:root {
+
+    --verde: #566146;
+    --verde-oscuro: #3e4935;
+    --verde-profundo: #303a2b;
+
+    --dorado: #c8af63;
+    --dorado-oscuro: #a78d45;
+
+    --crema: #f5f1e5;
+    --crema-claro: #faf8f0;
+
+    --tierra: #847f54;
+
+    --texto: #30362b;
+
+    --blanco: #ffffff;
+}
+
+
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family: "Montserrat", sans-serif;
+
+    background: var(--crema);
+
+    color: var(--texto);
+
+    overflow-x: hidden;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 22px 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 100;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(25, 32, 22, 0.55),
+        transparent
+    );
+}
+
+
+/* Logo */
+
+.brand img {
+
+    width: 95px;
+
+    height: auto;
+
+    display: block;
+
+    border-radius: 5px;
+}
+
+
+/* Menú */
+
+.navbar nav {
+
+    display: flex;
+
+    gap: 35px;
+}
+
+.navbar nav a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 0.75rem;
+
+    font-weight: 500;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    position: relative;
+
+    transition: 0.3s;
+}
+
+.navbar nav a::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 0;
+
+    height: 1px;
+
+    background: var(--dorado);
+
+    left: 0;
+
+    bottom: -7px;
+
+    transition: 0.3s;
+}
+
+.navbar nav a:hover {
+
+    color: var(--dorado);
+}
+
+.navbar nav a:hover::after {
+
+    width: 100%;
+}
+
+
+/* Botón navbar */
+
+.nav-button {
+
+    text-decoration: none;
+
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.7);
+
+    padding: 12px 22px;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    transition: 0.3s;
+}
+
+.nav-button:hover {
+
+    background: var(--dorado);
+
+    border-color: var(--dorado);
+
+    color: var(--verde-profundo);
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: white;
+
+    overflow: hidden;
+
+    background:
+
+        linear-gradient(
+            rgba(48, 58, 43, 0.78),
+            rgba(48, 58, 43, 0.88)
+        ),
+
+        url("naturaleza.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+
+/* Si no existe la imagen */
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            transparent 0%,
+            rgba(20, 27, 19, 0.35) 70%
+        );
+}
+
+
+/* Contenido */
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 800px;
+
+    padding: 30px;
+
+    animation: heroAppear 1.2s ease;
+}
+
+.small-title {
+
+    font-size: 0.72rem;
+
+    letter-spacing: 5px;
+
+    color: var(--dorado);
+
+    font-weight: 500;
+}
+
+
+.hero h1 {
+
+    margin-top: 25px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(5rem, 12vw, 10rem);
+
+    line-height: 0.75;
+
+    letter-spacing: 7px;
+
+    font-weight: 500;
+}
+
+.hero h1 span {
+
+    color: transparent;
+
+    -webkit-text-stroke: 1px white;
+}
+
+
+.gold-line {
+
+    width: 80px;
+
+    height: 2px;
+
+    background: var(--dorado);
+
+    margin: 35px auto 25px;
+}
+
+
+.hero h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(1.7rem, 4vw, 2.8rem);
+
+    font-weight: 400;
+
+    font-style: italic;
+}
+
+
+.hero p {
+
+    max-width: 600px;
+
+    margin: 20px auto 35px;
+
+    font-size: 0.95rem;
+
+    line-height: 1.9;
+
+    color: rgba(255,255,255,0.85);
+}
+
+
+/* Botón principal */
+
+.main-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 16px 28px;
+
+    background: var(--dorado);
+
+    color: var(--verde-profundo);
+
+    text-decoration: none;
+
+    font-size: 0.72rem;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    transition: 0.4s;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.main-button span {
+
+    font-size: 1.2rem;
+}
+
+.main-button:hover {
+
+    background: white;
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+
+.scroll-text {
+
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 0.6rem;
+
+    letter-spacing: 4px;
+
+    color: rgba(255,255,255,0.65);
+}
+
+
+/* ================= INTRO ================= */
+
+.intro {
+
+    min-height: 750px;
+
+    padding: 120px 9%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    gap: 100px;
+
+    background: var(--crema-claro);
+}
+
+
+.intro-image {
+
+    position: relative;
+
+    height: 550px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* Marco decorativo */
+
+.image-decoration {
+
+    position: absolute;
+
+    width: 85%;
+
+    height: 90%;
+
+    border: 1px solid var(--dorado);
+
+    transform: rotate(-4deg);
+
+}
+
+
+/* Espacio para foto */
+
+.nature-placeholder {
+
+    width: 85%;
+
+    height: 90%;
+
+    background:
+
+        linear-gradient(
+            rgba(62,73,53,0.4),
+            rgba(62,73,53,0.7)
+        ),
+
+        url("naturaleza.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+}
+
+
+.nature-placeholder span {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 3rem;
+
+    letter-spacing: 4px;
+}
+
+
+.nature-placeholder small {
+
+    margin-top: 10px;
+
+    letter-spacing: 2px;
+
+    font-size: 0.65rem;
+}
+
+
+/* Texto */
+
+.section-label {
+
+    color: var(--tierra);
+
+    font-size: 0.68rem;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+
+.intro-content h2,
+.section-heading h2,
+.about-content h2,
+.universe h2,
+.contact-content h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-weight: 500;
+
+    font-size: clamp(3rem, 5vw, 5rem);
+
+    line-height: 0.95;
+
+    color: var(--verde-oscuro);
+
+    margin: 25px 0 30px;
+}
+
+
+h2 em {
+
+    color: var(--tierra);
+
+    font-style: italic;
+}
+
+
+.intro-content p {
+
+    font-size: 0.9rem;
+
+    line-height: 1.9;
+
+    margin-bottom: 20px;
+
+    color: #5d6256;
+}
+
+
+.quote {
+
+    border-left: 2px solid var(--dorado);
+
+    padding: 15px 20px;
+
+    margin-top: 30px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 1.25rem;
+
+    font-style: italic;
+
+    color: var(--verde);
+}
+
+
+/* ================= EXPERIENCIA ================= */
+
+.experience {
+
+    padding: 120px 7%;
+
+    background: var(--verde);
+
+    color: white;
+}
+
+
+.section-heading {
+
+    max-width: 750px;
+
+    margin: 0 auto 70px;
+
+    text-align: center;
+}
+
+
+.experience .section-label {
+
+    color: var(--dorado);
+}
+
+
+.experience .section-heading h2 {
+
+    color: white;
+}
+
+
+.section-heading p {
+
+    max-width: 550px;
+
+    margin: auto;
+
+    color: rgba(255,255,255,0.7);
+
+    line-height: 1.8;
+
+    font-size: 0.9rem;
+}
+
+
+/* Cards */
+
+.cards {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 2px;
+
+    background: rgba(255,255,255,0.15);
+}
+
+
+.card {
+
+    background: var(--verde-oscuro);
+
+    padding: 45px 35px;
+
+    min-height: 330px;
+
+    position: relative;
+
+    transition: 0.4s;
+}
+
+
+.card:hover {
+
+    background: var(--verde-profundo);
+
+    transform: translateY(-8px);
+}
+
+
+.card-number {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 25px;
+
+    color: rgba(255,255,255,0.2);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 2rem;
+}
+
+
+.card-icon {
+
+    font-size: 2.2rem;
+
+    margin-bottom: 25px;
+}
+
+
+.card h3 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 2rem;
+
+    font-weight: 500;
+
+    margin-bottom: 15px;
+}
+
+
+.card p {
+
+    font-size: 0.78rem;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,0.65);
+}
+
+
+/* ================= STATEMENT ================= */
+
+.statement {
+
+    min-height: 600px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+
+        linear-gradient(
+            rgba(48,58,43,0.75),
+            rgba(48,58,43,0.85)
+        ),
+
+        url("naturaleza.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-attachment: fixed;
+
+    color: white;
+}
+
+
+.statement-content span {
+
+    font-size: 0.7rem;
+
+    letter-spacing: 5px;
+
+    color: var(--dorado);
+}
+
+
+.statement h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(4rem, 8vw, 7rem);
+
+    line-height: 0.85;
+
+    font-weight: 400;
+
+    margin-top: 30px;
+}
+
+
+.statement h2 em {
+
+    color: var(--dorado);
+
+}
+
+
+/* ================= ABOUT ================= */
+
+.about {
+
+    padding: 130px 9%;
+
+    display: grid;
+
+    grid-template-columns: 1.3fr 0.7fr;
+
+    gap: 100px;
+
+    align-items: center;
+
+    background: var(--crema-claro);
+}
+
+
+.about-content p {
+
+    max-width: 700px;
+
+    color: #5d6256;
+
+    font-size: 0.9rem;
+
+    line-height: 2;
+}
+
+
+.vision-box {
+
+    background: var(--verde);
+
+    color: white;
+
+    padding: 55px;
+
+    position: relative;
+
+    box-shadow: 20px 20px 0 var(--dorado);
+}
+
+
+.vision-box .section-label {
+
+    color: var(--dorado);
+}
+
+
+.vision-box h3 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 2.3rem;
+
+    line-height: 1.1;
+
+    font-weight: 400;
+
+    margin: 25px 0;
+}
+
+
+.vision-box p {
+
+    font-size: 0.78rem;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,0.7);
+}
+
+
+/* ================= UNIVERSO ================= */
+
+.universe {
+
+    padding: 120px 8%;
+
+    text-align: center;
+
+    background: #e9e4d5;
+}
+
+
+.universe > p {
+
+    max-width: 650px;
+
+    margin: 0 auto 50px;
+
+    color: #656a5d;
+
+    line-height: 1.9;
+
+    font-size: 0.9rem;
+}
+
+
+.universe-items {
+
+    max-width: 950px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+
+.universe-items span {
+
+    padding: 14px 22px;
+
+    border: 1px solid rgba(86,97,70,0.4);
+
+    color: var(--verde);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    transition: 0.3s;
+}
+
+
+.universe-items span:hover {
+
+    background: var(--verde);
+
+    color: white;
+
+    border-color: var(--verde);
+}
+
+
+/* ================= CONTACTO ================= */
+
+.contact {
+
+    min-height: 550px;
+
+    padding: 100px 10%;
+
+    background: var(--verde-oscuro);
+
+    color: white;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    gap: 50px;
+}
+
+
+.contact-content .section-label {
+
+    color: var(--dorado);
+}
+
+
+.contact-content h2 {
+
+    color: white;
+}
+
+
+.contact-content p {
+
+    max-width: 550px;
+
+    color: rgba(255,255,255,0.7);
+
+    line-height: 1.9;
+
+    font-size: 0.9rem;
+
+    margin-bottom: 35px;
+}
+
+
+.contact-decoration {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.contact-decoration img {
+
+    width: 280px;
+
+    height: auto;
+
+    border-radius: 50%;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+
+    transition: 0.5s;
+}
+
+
+.contact-decoration img:hover {
+
+    transform: rotate(5deg) scale(1.05);
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+
+    padding: 60px 20px;
+
+    text-align: center;
+
+    background: var(--verde-profundo);
+
+    color: white;
+}
+
+
+.footer-logo img {
+
+    width: 150px;
+
+    border-radius: 5px;
+
+    margin-bottom: 20px;
+}
+
+
+footer p {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 1.3rem;
+
+    font-style: italic;
+
+    color: var(--dorado);
+}
+
+
+.footer-line {
+
+    width: 50px;
+
+    height: 1px;
+
+    background: var(--dorado);
+
+    margin: 25px auto;
+}
+
+
+footer small {
+
+    font-size: 0.65rem;
+
+    letter-spacing: 1px;
+
+    color: rgba(255,255,255,0.5);
+}
+
+
+/* ================= ANIMACIONES ================= */
+
+@keyframes heroAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+
+        padding: 18px 5%;
+    }
+
+    .navbar nav {
+
+        display: none;
+    }
+
+    .nav-button {
+
+        padding: 10px 15px;
+    }
+
+
+    .intro {
+
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+
+        padding: 90px 7%;
+    }
+
+
+    .intro-image {
+
+        height: 450px;
+    }
+
+
+    .cards {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .about {
+
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+    }
+
+
+    .contact {
+
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+
+    .contact-content p {
+
+        margin-left: auto;
+
+        margin-right: auto;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .brand img {
+
+        width: 75px;
+    }
+
+
+    .hero {
+
+        min-height: 850px;
+    }
+
+
+    .hero h1 {
+
+        font-size: 5rem;
+
+        letter-spacing: 3px;
+    }
+
+
+    .small-title {
+
+        font-size: 0.58rem;
+
+        letter-spacing: 3px;
+    }
+
+
+    .hero p {
+
+        font-size: 0.8rem;
+
+        line-height: 1.7;
+    }
+
+
+    .intro {
+
+        padding: 80px 6%;
+    }
+
+
+    .intro-image {
+
+        height: 350px;
+    }
+
+
+    .nature-placeholder span {
+
+        font-size: 2rem;
+    }
+
+
+    .cards {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .experience {
+
+        padding: 90px 5%;
+    }
+
+
+    .card {
+
+        min-height: auto;
+
+        padding: 40px 30px;
+    }
+
+
+    .statement {
+
+        min-height: 500px;
+
+        background-attachment: scroll;
+    }
+
+
+    .statement h2 {
+
+        font-size: 4rem;
+    }
+
+
+    .about {
+
+        padding: 90px 7%;
+    }
+
+
+    .vision-box {
+
+        padding: 40px 30px;
+
+        box-shadow: 12px 12px 0 var(--dorado);
+    }
+
+
+    .universe {
+
+        padding: 90px 6%;
+    }
+
+
+    .contact {
+
+        padding: 90px 7%;
+    }
+
+
+    .contact-decoration img {
+
+        width: 220px;
+    }
+
+}

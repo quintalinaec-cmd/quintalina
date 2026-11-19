@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecuador: Los 4 Mundos | Masquevuelos Agencia de Viajes</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lightbg: '#fcfcfd',
+                        cardlight: '#ffffff',
+                        obsidian: '#111111',
+                        gold: {
+                            DEFAULT: '#b8972f',
+                            light: '#dfc26c',
+                            dark: '#937520'
+                        },
+                        platinum: '#6c757d',
+                        // Colores por cada mundo
+                        costa: '#0284c7',
+                        andes: '#b45309',
+                        amazonia: '#15803d',
+                        galapagos: '#0d9488'
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fcfcfd;
+            color: #212529;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #b8972f 0%, #937520 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-btn {
+            background: linear-gradient(135deg, #b8972f 0%, #937520 100%);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .gold-gradient-btn:hover {
+            background: linear-gradient(135deg, #dfc26c 0%, #b8972f 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(184, 151, 47, 0.4);
+        }
+        .light-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(184, 151, 47, 0.45);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .light-card:hover {
+            border-color: rgba(184, 151, 47, 0.95);
+            box-shadow: 0 20px 45px rgba(184, 151, 47, 0.22);
+            transform: translateY(-6px);
+        }
+        .mundo-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .mundo-card .bg-image {
+            transition: transform 0.7s ease;
+        }
+        .mundo-card:hover .bg-image {
+            transform: scale(1.08);
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), 
+                        url('4 m.JPG');
+            background-size: cover;
+            background-position: center;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #b8972f; border-radius: 4px; }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- NAV BAR -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gold/20">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border-2 border-gold flex items-center justify-center bg-gold/10 group-hover:scale-105 transition-transform">
+                    <span class="font-cinzel text-gold font-bold text-lg">E4</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-cinzel text-xl font-bold tracking-widest text-obsidian">LOS 4 MUNDOS</span>
+                    <span class="text-[9px] tracking-widest text-platinum uppercase font-semibold">Masquevuelos Agencia de Viajes</span>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-sm font-medium text-gray-700 hover:text-gold transition-colors">Inicio</a>
+                <a href="#informacion-general" class="text-sm font-medium text-gray-700 hover:text-gold transition-colors">Nuestro destino</a>
+                <a href="#mundos" class="text-sm font-medium text-gray-700 hover:text-gold transition-colors">Los 4 Mundos</a>
+                <a href="#itinerarios" class="text-sm font-medium text-gray-700 hover:text-gold transition-colors">Precios</a>
+            </div>
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#contacto" class="gold-gradient-btn px-6 py-2.5 rounded-full text-sm font-bold shadow-md">
+                    Planificar Viaje
+                </a>
+            </div>
+            <button id="menu-btn" class="md:hidden text-obsidian focus:outline-none p-2">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gold/20 px-6 py-6 space-y-4 shadow-lg">
+            <a href="#inicio" class="block text-base font-medium text-gray-700 hover:text-gold transition-colors">Inicio</a>
+            <a href="#mundos" class="block text-base font-medium text-gray-700 hover:text-gold transition-colors">Los 4 Mundos</a>
+            <a href="#informacion-general" class="block text-base font-medium text-gray-700 hover:text-gold transition-colors">Nuestro destino</a>
+            <a href="#itinerarios" class="block text-base font-medium text-gray-700 hover:text-gold transition-colors">Precios</a>
+            <a href="#contacto" class="block text-base font-medium text-gray-700 hover:text-gold transition-colors">Contacto</a>
+            <div class="pt-2">
+                <a href="#contacto" class="block text-center gold-gradient-btn py-3 rounded-full font-bold shadow-md">
+                    Planificar Viaje
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="inicio" class="hero-bg min-h-screen flex items-center justify-center pt-28 pb-16 px-6 text-white">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 border border-white/30 mb-6 backdrop-blur-sm">
+                <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+                <span class="text-xs font-semibold tracking-wider text-gold-light uppercase">Ecuador &middot; Un país, cuatro paraísos</span>
+            </div>
+            
+            <h1 class="font-cinzel text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-tight">
+                Descubre <span class="text-gold-light">Los 4 Mundos</span><br>de Ecuador
+            </h1>
+            
+            <p class="text-lg sm:text-xl text-gray-100 max-w-3xl mx-auto mb-10 leading-relaxed bg-black/30 p-6 rounded-2xl backdrop-blur-md border border-white/10">
+                Costa dorada, cumbres andinas, selva amazónica y la magia única de las Islas Galápagos. 
+                Un viaje inolvidable por la biodiversidad más extraordinaria del planeta.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#mundos" class="w-full sm:w-auto gold-gradient-btn px-8 py-4 rounded-full font-bold text-base shadow-lg flex items-center justify-center gap-3">
+                    <span>Explorar los 4 Mundos</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </a>
+                <a href="#itinerarios" class="w-full sm:w-auto bg-white/20 hover:bg-white/30 text-white border border-white/30 px-8 py-4 rounded-full font-bold text-base transition-all flex items-center justify-center gap-3 backdrop-blur-sm">
+                    <span>Ver Itinerarios</span>
+                </a>
+            </div>
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/20">
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl text-center border border-white/10">
+                    <div class="font-cinzel text-3xl font-bold text-gold-light mb-1">4</div>
+                    <div class="text-xs text-gray-300 tracking-wider uppercase font-semibold">Regiones Únicas</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl text-center border border-white/10">
+                    <div class="font-cinzel text-3xl font-bold text-gold-light mb-1">20+</div>
+                    <div class="text-xs text-gray-300 tracking-wider uppercase font-semibold">Días de Travesía</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl text-center border border-white/10">
+                    <div class="font-cinzel text-3xl font-bold text-gold-light mb-1">Patrimonio</div>
+                    <div class="text-xs text-gray-300 tracking-wider uppercase font-semibold">Mundial UNESCO</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl text-center border border-white/10">
+                    <div class="font-cinzel text-3xl font-bold text-gold-light mb-1">VIP</div>
+                    <div class="text-xs text-gray-300 tracking-wider uppercase font-semibold">Experiencia Exclusiva</div>
+                </div>
+            </div>
+        </div>
+    </header>
+      <!-- INFORMACIÓN GENERAL DE ECUADOR -->
+    <section id="informacion-general" class="py-24 px-6 bg-[#fcfcfd]">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <!-- TEXTO GENERAL -->
+                <div>
+                    <span class="text-gold text-sm font-bold tracking-widest uppercase block mb-4">
+                        Conoce nuestro destino
+                    </span>
+
+                    <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-obsidian leading-tight mb-6">
+                        Ecuador, un mundo de experiencias en un solo país
+                    </h2>
+
+                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed mb-5">
+                        Ecuador está ubicado en el noroeste de América del Sur y
+                        destaca por su extraordinaria diversidad natural, cultural
+                        y geográfica. A pesar de su pequeño territorio, ofrece
+                        paisajes únicos que van desde las playas del océano
+                        Pacífico hasta los volcanes de los Andes, la selva
+                        amazónica y las fascinantes Islas Galápagos.
+                    </p>
+
+                    <p class="text-gray-600 text-base leading-relaxed mb-5">
+                        Su riqueza también se encuentra en sus pueblos, tradiciones,
+                        gastronomía, arquitectura histórica y comunidades ancestrales.
+                        Cada región ofrece experiencias diferentes para descubrir
+                        la identidad y la belleza del país.
+                    </p>
+
+                    <p class="text-gray-600 text-base leading-relaxed mb-8">
+                        Con Masquevuelos Agencia de Viajes podrás explorar Ecuador
+                        mediante itinerarios organizados, recorridos culturales,
+                        aventuras en la naturaleza y experiencias personalizadas
+                        según tus intereses y tiempo disponible.
+                    </p>
+
+                    <a href="#mundos"
+                       class="gold-gradient-btn inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full font-bold shadow-md">
+                        Descubre los cuatro mundos
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- IMAGEN Y DATOS DESTACADOS -->
+                <div class="relative">
+                    <div class="rounded-3xl overflow-hidden shadow-xl border border-gold/30">
+                        <img
+                            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85"
+                            alt="Paisajes naturales y montañas de Ecuador"
+                            class="w-full h-[320px] sm:h-[440px] object-cover"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mt-5">
+                        <div class="light-card rounded-2xl p-5 text-center">
+                            <div class="font-cinzel text-2xl font-bold text-gold mb-2">
+                                4 regiones
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                Costa, Sierra, Amazonía y Galápagos
+                            </p>
+                        </div>
+
+                        <div class="light-card rounded-2xl p-5 text-center">
+                            <div class="font-cinzel text-2xl font-bold text-gold mb-2">
+                                Diversidad
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                Naturaleza, cultura y aventura
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PILARES DEL DESTINO -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
+
+                <article class="light-card rounded-2xl p-6">
+                    <div class="text-3xl mb-4">🌊</div>
+                    <h3 class="font-cinzel text-lg font-bold text-obsidian mb-3">
+                        Naturaleza
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Playas, bosques, volcanes, cascadas y ecosistemas
+                        llenos de vida para disfrutar y explorar.
+                    </p>
+                </article>
+
+                <article class="light-card rounded-2xl p-6">
+                    <div class="text-3xl mb-4">🏛️</div>
+                    <h3 class="font-cinzel text-lg font-bold text-obsidian mb-3">
+                        Cultura y tradición
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Ciudades históricas, mercados tradicionales,
+                        artesanías, fiestas populares y herencia ancestral.
+                    </p>
+                </article>
+
+                <article class="light-card rounded-2xl p-6">
+                    <div class="text-3xl mb-4">🍲</div>
+                    <h3 class="font-cinzel text-lg font-bold text-obsidian mb-3">
+                        Gastronomía
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Sabores regionales que combinan productos frescos,
+                        recetas tradicionales y una identidad culinaria propia.
+                    </p>
+                </article>
+
+                <article class="light-card rounded-2xl p-6">
+                    <div class="text-3xl mb-4">🧭</div>
+                    <h3 class="font-cinzel text-lg font-bold text-obsidian mb-3">
+                        Aventura
+                    </h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Caminatas, navegación, observación de fauna,
+                        recorridos culturales y experiencias personalizadas.
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+    <!-- FIN DE INFORMACIÓN GENERAL -->
+
+    <!-- LOS 4 MUNDOS SECTION -->
+    <section id="mundos" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-gold text-sm font-bold tracking-widest uppercase block mb-3">Cuatro destinos en un solo país</span>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-bold mb-6 text-obsidian">Los Cuatro Mundos de Ecuador</h2>
+                <p class="text-gray-600 text-lg">Naturaleza, cultura y aventura en cada rincón. Ecuador te invita a vivir la diversidad del planeta en un solo viaje.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- MUNDO 1: COSTA -->
+                <div class="mundo-card light-card rounded-3xl overflow-hidden group">
+                    <div class="h-72 relative overflow-hidden">
+                        <div class="bg-image absolute inset-0 bg-cover bg-center" style="background-image: url('paquete\ c.jpg')"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-costa/90 via-costa/50 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider mb-2">Mundo 1</span>
+                            <h3 class="font-cinzel text-3xl font-bold">La Costa</h3>
+                            <p class="text-costa-100 text-sm mt-1">Playas doradas, mar y tradición</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Desde la vibrante Guayaquil hasta las costas vírgenes del Pacífico. Navegación, avistamiento de ballenas, 
+                            pesca deportiva y la calidez de la gente costeña. El sabor del mar y la alegría de la vida en la orilla.
+                        </p>
+                        <ul class="space-y-2 mb-6 text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-costa font-bold">✓</span>
+                                <span class="text-gray-600">Guayaquil, la Perla del Pacífico</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-costa font-bold">✓</span>
+                                <span class="text-gray-600">Playas de arena blanca y atardeceres inolvidables</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-costa font-bold">✓</span>
+                                <span class="text-gray-600">Gastronomía: ceviche, encocado y mariscos frescos</span>
+                            </li>
+                        </ul>
+                        <a href="https://www.masquevuelos.com/copia-de-sierra"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="block w-full text-center py-3 rounded-xl border border-costa text-costa hover:bg-costa hover:text-white text-sm font-bold uppercase tracking-wider transition-all">
+                           Explorar la Costa
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MUNDO 2: ANDES -->
+                <div class="mundo-card light-card rounded-3xl overflow-hidden group">
+                    <div class="h-72 relative overflow-hidden">
+                        <div class="bg-image absolute inset-0 bg-cover bg-center" style="background-image: url('paquete\ A.jpg')"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-andes/90 via-andes/50 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider mb-2">Mundo 2</span>
+                            <h3 class="font-cinzel text-3xl font-bold">Los Andes</h3>
+                            <p class="text-amber-100 text-sm mt-1">Volcanes, cultura y herencia Inca</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Quito, la ciudad más alta del mundo declarada Patrimonio Cultural de la Humanidad. El Cotopaxi imponente, 
+                            la laguna del Quilotoa de aguas esmeralda, el tren de la Nariz del Diablo y las ruinas de Ingapirca. 
+                            Tierra de ancestros y paisajes que quitan el aliento.
+                        </p>
+                        <ul class="space-y-2 mb-6 text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-andes font-bold">✓</span>
+                                <span class="text-gray-600">Quito — Centro Histórico mejor conservado de América</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-andes font-bold">✓</span>
+                                <span class="text-gray-600">Volcanes activos: Cotopaxi, Chimborazo</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-andes font-bold">✓</span>
+                                <span class="text-gray-600">Cuenca, la Atenas del Ecuador</span>
+                            </li>
+                        </ul>
+                        <a href="https://www.masquevuelos.com/copia-de-galapagos"
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         class="block w-full text-center py-3 rounded-xl border border-andes text-andes hover:bg-andes hover:text-white text-sm font-bold uppercase tracking-wider transition-all">
+                         Recorrer los Andes
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MUNDO 3: AMAZONÍA -->
+                <div class="mundo-card light-card rounded-3xl overflow-hidden group">
+                    <div class="h-72 relative overflow-hidden">
+                        <div class="bg-image absolute inset-0 bg-cover bg-center" style="background-image: url('paquete\ ama.jpg')"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-amazonia/90 via-amazonia/50 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider mb-2">Mundo 3</span>
+                            <h3 class="font-cinzel text-3xl font-bold">La Amazonía</h3>
+                            <p class="text-green-100 text-sm mt-1">Pulmón del planeta y selva viva</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Navega por el río Napo hacia el corazón de la selva. Observa loros en los salares de arcilla, 
+                            camina por el bosque tropical desde torres de observación y descubre la sabiduría de las comunidades Kichwa. 
+                            Una inmersión profunda en la biodiversidad más rica del planeta.
+                        </p>
+                        <ul class="space-y-2 mb-6 text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-amazonia font-bold">✓</span>
+                                <span class="text-gray-600">Parque Nacional Yasuní — reserva biológica única</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-amazonia font-bold">✓</span>
+                                <span class="text-gray-600">Fauna exótica: monos, aves, nutrias gigantes</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-amazonia font-bold">✓</span>
+                                <span class="text-gray-600">Convivencia con comunidades indígenas</span>
+                            </li>
+                        </ul>
+                        <a href="https://www.masquevuelos.com/copia-de-costa"
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         class="block w-full text-center py-3 rounded-xl border border-amazonia text-amazonia hover:bg-amazonia hover:text-white text-sm font-bold uppercase tracking-wider transition-all">
+                          Vivir la Amazonía
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MUNDO 4: GALÁPAGOS -->
+                <div class="mundo-card light-card rounded-3xl overflow-hidden group">
+                    <div class="h-72 relative overflow-hidden">
+                        <div class="bg-image absolute inset-0 bg-cover bg-center" style="background-image: url('paquete G.jpg')"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-galapagos/90 via-galapagos/50 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider mb-2">Mundo 4</span>
+                            <h3 class="font-cinzel text-3xl font-bold">Galápagos</h3>
+                            <p class="text-teal-100 text-sm mt-1">Laboratorio natural del mundo</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Las Islas Encantadas. Donde la vida evoluciona ante tus ojos. Tortugas gigantes, iguanas marinas, 
+                            piqueros de patas azules y tiburones de arrecife en aguas cristalinas. El paraíso que inspiró 
+                            la teoría de la evolución. Patrimonio Natural de la Humanidad.
+                        </p>
+                        <ul class="space-y-2 mb-6 text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-galapagos font-bold">✓</span>
+                                <span class="text-gray-600">Tortuga Bay y la Estación Charles Darwin</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-galapagos font-bold">✓</span>
+                                <span class="text-gray-600">Volcanes activos: Sierra Negra, Isabela</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-galapagos font-bold">✓</span>
+                                <span class="text-gray-600">Buceo y snorkel entre especies endémicas</span>
+                            </li>
+                        </ul>
+                        <a href="https://www.masquevuelos.com/paquetes"
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         class="block w-full text-center py-3 rounded-xl border border-galapagos text-galapagos hover:bg-galapagos hover:text-white text-sm font-bold uppercase tracking-wider transition-all">
+                         Descubrir Galápagos
+                         </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAQUETES, ITINERARIOS Y PRECIOS -->
+    <section id="itinerarios" class="py-24 px-6 bg-gray-50 border-y border-gold/20">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-gold text-sm font-bold tracking-widest uppercase block mb-3">Masquevuelos Agencia de Viajes</span>
+          <h2 class="font-cinzel text-3xl sm:text-5xl font-bold mb-6 text-obsidian">Paquetes para descubrir Ecuador</h2>
+          <p class="text-gray-600 text-lg">Más de 14 años de experiencia en el sector turístico, con respaldo, seguridad y asesoría personalizada. Elige el recorrido que mejor se adapte a tu viaje.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-7">
+          <article class="light-card rounded-3xl overflow-hidden">
+            <div class="bg-gradient-to-r from-andes to-amber-600 text-white p-6">
+              <span class="text-xs uppercase tracking-widest font-bold">Ecuador en 2 mundos</span>
+              <h3 class="font-cinzel text-2xl font-bold mt-2">Los Andes y Galápagos</h3>
+              <p class="text-amber-100 mt-2">14 días / 13 noches</p>
+            </div>
+            <div class="p-6">
+              <p class="text-gray-600 text-sm leading-relaxed">Un recorrido por Quito, Baños, Riobamba, Alausí, Ingapirca, Cuenca y las principales maravillas naturales de Galápagos.</p>
+              <details class="mt-5 border-t border-gray-100 pt-4"><summary class="font-bold text-obsidian cursor-pointer">Ver itinerario día por día</summary>
+                <ol class="mt-4 space-y-3 text-sm text-gray-600 list-decimal pl-5">
+                  <li><b>Día 1 · Arribo a Quito:</b> traslado al Hotel Casa Gangotena, descanso y aclimatación.</li>
+                  <li><b>Día 2 · Quito colonial:</b> Teleférico, Centro Histórico, Iglesia de la Compañía de Jesús, San Francisco y almuerzo incluido. Continuación a Riobamba y alojamiento en Hotel Quindeloma.</li>
+                  <li><b>Día 3 · Quito–Baños:</b> visita al Pailón del Diablo y check-in en Luna Volcán Adventure SPA.</li>
+                  <li><b>Día 4 · Casa del Árbol:</b> visita al mirador y traslado terrestre a Riobamba.</li>
+                  <li><b>Día 5 · Nariz del Diablo, Ingapirca y Cuenca:</b> recorrido en tren desde Alausí, visita al complejo arqueológico y alojamiento en Mansión Alcázar.</li>
+                  <li><b>Día 6 · Cuenca colonial:</b> recorrido guiado por el casco antiguo y vuelo de retorno a Quito; traslado al Hotel Holiday Inn.</li>
+                  <li><b>Día 7 · Vuelo a Galápagos:</b> traslado al aeropuerto, vuelo y llegada al hotel.</li>
+                  <li><b>Día 8 · Baltra y Santa Cruz:</b> zona alta y túneles de lava.</li>
+                  <li><b>Día 9 · Isla Isabela:</b> humedales, Tintoreras y piscinas de flamencos.</li>
+                  <li><b>Día 10 · Sierra Negra:</b> excursión al volcán y visita a Concha de Perla.</li>
+                  <li><b>Día 11 · Santa Cruz:</b> Tortuga Bay y Estación Científica Charles Darwin.</li>
+                  <li><b>Día 12 · Bay Tour:</b> recorrido por la bahía y observación de fauna marina.</li>
+                  <li><b>Día 13 · San Cristóbal:</b> Centro de Interpretación, Cerro Tijeretas y Punta Carola.</li>
+                  <li><b>Día 14 · Salida:</b> traslado al aeropuerto de San Cristóbal para el vuelo de retorno.</li>
+                </ol>
+              </details>
+              <details class="mt-4 border-t border-gray-100 pt-4"><summary class="font-bold text-obsidian cursor-pointer">Incluye / No incluye</summary>
+                <div class="mt-3 text-sm text-gray-600"><p class="font-bold text-gold mb-1">Incluye</p><ul class="list-disc pl-5 space-y-1"><li>Alojamiento en hoteles seleccionados.</li><li>Traslados terrestres y aeroportuarios detallados.</li><li>Guía turístico bilingüe certificado en visitas programadas.</li><li>Vuelos nacionales Cuenca–Quito y Quito–Galápagos.</li><li>Transporte acuático entre islas según itinerario.</li></ul>
+                <p class="font-bold text-gold mt-4 mb-1">No incluye</p><ul class="list-disc pl-5 space-y-1"><li>Actividades o excursiones no especificadas.</li><li>Alimentos y bebidas no mencionados.</li><li>Entrada al Parque Nacional Galápagos: USD 200 por persona.</li><li>Tasa de muelle en Isabela: USD 10 por persona.</li><li>Propinas y gastos personales.</li></ul></div>
+              </details>
+              <a href="#contacto" class="gold-gradient-btn block text-center mt-6 px-5 py-3 rounded-full font-bold text-sm">Solicitar este paquete</a>
+            </div>
+          </article>
+          <article class="light-card rounded-3xl overflow-hidden border-2 border-gold/50">
+            <div class="bg-gradient-to-r from-amazonia to-teal-700 text-white p-6">
+              <span class="text-xs uppercase tracking-widest font-bold">Ecuador en 3 mundos</span>
+              <h3 class="font-cinzel text-2xl font-bold mt-2">Andes, Amazonía y Galápagos</h3>
+              <p class="text-green-100 mt-2">18 días / 17 noches</p>
+            </div>
+            <div class="p-6">
+              <p class="text-gray-600 text-sm leading-relaxed">Combina ciudades patrimoniales y paisajes andinos con una estancia en el Napo Wildlife Center y exploraciones de las Islas Galápagos.</p>
+              <details class="mt-5 border-t border-gray-100 pt-4"><summary class="font-bold text-obsidian cursor-pointer">Ver itinerario día por día</summary>
+                <ol class="mt-4 space-y-3 text-sm text-gray-600 list-decimal pl-5">
+                  <li><b>Día 1 · Quito:</b> llegada, traslado al Hotel Casa Gangotena y descanso.</li>
+                  <li><b>Día 2 · Quito colonial:</b> Teleférico, Centro Histórico, Iglesia de la Compañía, San Francisco y almuerzo incluido.</li>
+                  <li><b>Día 3 · Baños:</b> salida desde Quito, visita al Pailón del Diablo y alojamiento en Luna Volcán Adventure SPA.</li>
+                  <li><b>Día 4 · Casa del Árbol y Riobamba:</b> visita a la Casa del Árbol y traslado al Hotel Spa Casa Real.</li>
+                  <li><b>Día 5 · Nariz del Diablo e Ingapirca:</b> recorrido en tren desde Alausí, visita arqueológica y traslado a Cuenca.</li>
+                  <li><b>Día 6 · Cuenca:</b> recorrido por el casco antiguo, vuelo a Quito y alojamiento en Holiday Inn Quito Airport.</li>
+                  <li><b>Día 7 · Amazonía:</b> vuelo Quito–Coca y navegación hasta Napo Wildlife Center.</li>
+                  <li><b>Día 8 · Experiencia amazónica:</b> salares de arcilla de loros y Centro de Interpretación Kichwa Kuri Muyu.</li>
+                  <li><b>Día 9 · Amazonía profunda:</b> torre de observación, caminata por bosque de terra firme, lagos y arroyos en canoa; paseo nocturno.</li>
+                  <li><b>Día 10 · Retorno a Quito:</b> navegación a Coca, vuelo y traslado al hotel.</li>
+                  <li><b>Día 11 · Galápagos:</b> vuelo y traslado al alojamiento seleccionado en Santa Cruz.</li>
+                  <li><b>Día 12 · Santa Cruz:</b> zona alta y túneles de lava.</li>
+                  <li><b>Día 13 · Isabela:</b> humedales, Tintoreras y piscina de flamencos.</li>
+                  <li><b>Día 14 · Sierra Negra:</b> volcán y Concha de Perla.</li>
+                  <li><b>Día 15 · Santa Cruz:</b> Tortuga Bay y Estación Científica Charles Darwin.</li>
+                  <li><b>Día 16 · Bay Tour:</b> navegación y observación de fauna marina.</li>
+                  <li><b>Día 17 · San Cristóbal:</b> Centro de Interpretación, Cerro Tijeretas y Punta Carola.</li>
+                  <li><b>Día 18 · Salida:</b> traslado al aeropuerto de San Cristóbal y vuelo de retorno.</li>
+                </ol>
+              </details>
+              <details class="mt-4 border-t border-gray-100 pt-4"><summary class="font-bold text-obsidian cursor-pointer">Incluye / No incluye</summary>
+                <div class="mt-3 text-sm text-gray-600"><p class="font-bold text-gold mb-1">Incluye</p><ul class="list-disc pl-5 space-y-1"><li>Alojamiento en hoteles seleccionados.</li><li>Traslados terrestres y aeroportuarios detallados.</li><li>Guía turístico bilingüe certificado.</li><li>Vuelos nacionales: Cuenca–Quito, Quito–Coca–Quito y Quito–Galápagos.</li><li>Transporte acuático entre islas según itinerario.</li></ul><p class="font-bold text-gold mt-4 mb-1">No incluye</p><ul class="list-disc pl-5 space-y-1"><li>Actividades y excursiones no especificadas.</li><li>Alimentos y bebidas no mencionados.</li><li>Entrada al Parque Nacional Galápagos: USD 200 por persona.</li><li>Tasa de muelle en Isabela: USD 10 por persona.</li><li>Propinas y gastos personales.</li></ul></div>
+              </details>
+              <a href="#contacto" class="gold-gradient-btn block text-center mt-6 px-5 py-3 rounded-full font-bold text-sm">Solicitar este paquete</a>
+            </div>
+          </article>
+          <article class="light-card rounded-3xl overflow-hidden">
+            <div class="bg-gradient-to-r from-galapagos to-cyan-700 text-white p-6">
+              <span class="text-xs uppercase tracking-widest font-bold">El país de los 4 mundos</span>
+              <h3 class="font-cinzel text-2xl font-bold mt-2">Costa, Andes, Amazonía y Galápagos</h3>
+              <p class="text-teal-100 mt-2">20 días / 19 noches</p>
+            </div>
+            <div class="p-6">
+              <p class="text-gray-600 text-sm leading-relaxed">La experiencia más completa: comienza en Galápagos, continúa por la Costa y los Andes, y finaliza con la Amazonía ecuatoriana.</p>
+              <details class="mt-5 border-t border-gray-100 pt-4"><summary class="font-bold text-obsidian cursor-pointer">Ver itinerario día por día</summary>
+                <ol class="mt-4 space-y-3 text-sm text-gray-600 list-decimal pl-5">
+                  <li><b>Día 1 · Galápagos:</b> llegada, asistencia y traslado al hotel.</li>
+                  <li><b>Día 2 · Santa Cruz:</b> zona alta y túneles de lava; observación de tortugas gigantes.</li>
+                  <li><b>Día 3 · Isabela:</b> humedales, Tintoreras y piscina de flamencos.</li>
+                  <li><b>Día 4 · Sierra Negra:</b> excursión al volcán y visita a Concha de Perla.</li>
+                  <li><b>Día 5 · Santa Cruz:</b> Tortuga Bay y Estación Científica Charles Darwin.</li>
+                  <li><b>Día 6 · Bay Tour:</b> recorrido por la bahía y observación de fauna marina.</li>
+                  <li><b>Día 7 · San Cristóbal:</b> Centro de Interpretación, Cerro Tijeretas y Punta Carola.</li>
+                  <li><b>Día 8 · Guayaquil:</b> vuelo desde San Cristóbal, traslado al hotel y descanso.</li>
+                  <li><b>Día 9 · Guayaquil–Cuenca:</b> Las Peñas, Cerro Santa Ana, Parque Histórico, Malecón 2000 y rueda La Perla; vuelo a Cuenca.</li>
+                  <li><b>Día 10 · Ingapirca, Cuenca y Riobamba:</b> complejo arqueológico, centro histórico y traslado a Riobamba.</li>
+                  <li><b>Día 11 · Alausí y Baños:</b> experiencia en el Tren de la Nariz del Diablo y traslado a Baños.</li>
+                  <li><b>Día 12 · Baños:</b> Pailón del Diablo y Casa del Árbol.</li>
+                  <li><b>Día 13 · Quilotoa:</b> visita a la laguna y recorrido por la Sierra ecuatoriana.</li>
+                  <li><b>Día 14 · Cotopaxi–Quito:</b> Parque Nacional Cotopaxi y alojamiento en Casa Gangotena.</li>
+                  <li><b>Día 15 · Quito colonial:</b> Teleférico y recorrido por el Centro Histórico.</li>
+                  <li><b>Día 16 · Quitsato y Otavalo:</b> monumento de la línea ecuatorial, Plaza de Ponchos, Cascada de Peguche y fábrica de bizcochos.</li>
+                  <li><b>Día 17 · Amazonía:</b> vuelo Quito–Coca y navegación al Napo Wildlife Center, en el entorno del Parque Nacional Yasuní.</li>
+                  <li><b>Día 18 · Actividades del lodge:</b> salares de arcilla de loros y Centro de Interpretación Kichwa Kuri Muyu.</li>
+                  <li><b>Día 19 · Exploración amazónica:</b> torre de observación, caminata por bosque de terra firme, canoa y caminata nocturna.</li>
+                  <li><b>Día 20 · Retorno a Quito:</b> regreso a Coca, vuelo a Quito y fin de los servicios.</li>
+                </ol>
+              </details>
+              <details class="mt-4 border-t border-gray-100 pt-4"><summary class="font-bold text-obsidian cursor-pointer">Incluye / No incluye</summary>
+                <div class="mt-3 text-sm text-gray-600"><p class="font-bold text-gold mb-1">Incluye</p><ul class="list-disc pl-5 space-y-1"><li>Alojamiento completo.</li><li>Traslados previstos en el programa.</li><li>Guía turístico bilingüe certificado.</li><li>Vuelos nacionales y transporte acuático según itinerario.</li></ul><p class="font-bold text-gold mt-4 mb-1">No incluye</p><ul class="list-disc pl-5 space-y-1"><li>Actividades o excursiones no especificadas.</li><li>Alimentos y bebidas no mencionados.</li><li>Entrada al Parque Nacional Galápagos: USD 200 por persona.</li><li>Tasa de muelle en Isabela: USD 10 por persona.</li><li>Propinas y gastos personales.</li></ul></div>
+              </details>
+              <a href="#contacto" class="gold-gradient-btn block text-center mt-6 px-5 py-3 rounded-full font-bold text-sm">Solicitar este paquete</a>
+            </div>
+          </article>
+        </div>
+        <div class="light-card rounded-3xl p-8 mt-10">
+          <h3 class="font-cinzel text-2xl font-bold text-obsidian mb-6">Información importante</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-gray-600">
+            <div><h4 class="font-bold text-gold mb-3">Recomendaciones para el viaje</h4><ul class="list-disc pl-5 space-y-2"><li>Llevar ropa ligera para Galápagos y la Amazonía, y ropa abrigada para la Sierra.</li><li>Utilizar calzado cómodo para caminatas.</li><li>Llevar protector solar, repelente de insectos, sombrero o gorra, gafas de sol y traje de baño.</li><li>Llevar una botella reutilizable de agua y una mochila pequeña para excursiones.</li><li>Respetar la flora, la fauna y las indicaciones de los guías en las áreas protegidas.</li><li>Se recomienda contratar un seguro de viaje.</li></ul></div>
+            <div><h4 class="font-bold text-gold mb-3">Términos y condiciones</h4><ul class="list-disc pl-5 space-y-2"><li>El itinerario y los horarios pueden cambiar por condiciones climáticas, operativas o de fuerza mayor.</li><li>Las tarifas están sujetas a disponibilidad al momento de la reserva.</li><li>Los pasajeros deben portar documentación vigente durante todo el recorrido.</li><li>La agencia actúa como intermediaria entre el pasajero y los prestadores de servicios turísticos.</li><li>Se requiere un abono del 50% para reservar; el abono no es reembolsable.</li><li>Una vez contratado el paquete, no se permiten cambios ni devoluciones.</li><li>Los pagos con tarjeta a través de PayPal incluyen recargo.</li></ul></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO / COTIZACIÓN -->
+    <section id="contacto" class="py-24 px-6 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-gold text-sm font-bold tracking-widest uppercase block mb-3">Comienza tu travesía</span>
+                <h2 class="font-cinzel text-3xl sm:text-4xl font-bold mb-4 text-obsidian">Solicita Tu Itinerario Personalizado</h2>
+                <p class="text-gray-600 text-lg">Nuestro equipo diseñará la propuesta ideal según tus fechas, preferencias y acompañantes.</p>
+            </div>
+            <div class="light-card rounded-3xl p-8 sm:p-12 shadow-xl">
+                <form onsubmit="handleQuoteSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold uppercase text-gray-500 mb-2">Nombre Completo</label>
+                            <input type="text" required placeholder="Tu nombre completo" class="w-full bg-white border border-gold/40 rounded-xl px-4 py-3 text-obsidian focus:border-gold focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold uppercase text-gray-500 mb-2">País de Origen</label>
+                            <input type="text" required placeholder="Ej. Colombia, México, España..." class="w-full bg-white border border-gold/40 rounded-xl px-4 py-3 text-obsidian focus:border-gold focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold uppercase text-gray-500 mb-2">Correo Electrónico</label>
+                            <input type="email" required placeholder="tu@email.com" class="w-full bg-white border border-gold/40 rounded-xl px-4 py-3 text-obsidian focus:border-gold focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold uppercase text-gray-500 mb-2">WhatsApp / Teléfono</label>
+                            <input type="tel" required placeholder="+XX XXX XXX XXXX" class="w-full bg-white border border-gold/40 rounded-xl px-4 py-3 text-obsidian focus:border-gold focus:outline-none">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-sm font-semibold uppercase text-gray-500 mb-2">Itinerario de Interés</label>
+                            <select class="w-full bg-white border border-gold/40 rounded-xl px-4 py-3 text-obsidian focus:border-gold focus:outline-none">
+                                <option>Ruta Tradicional — 18 Días (Quito → Galápagos)</option>
+                                <option>El Gran Recorrido — 20 Días (Galápagos → Quito)</option>
+                                <option>Personalizado — combinar mundos a medida</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-sm font-semibold uppercase text-gray-500 mb-2">Mensaje o Comentarios</label>
+                            <textarea rows="4" placeholder="Cuéntanos fechas aproximadas, número de personas, preferencias de alojamiento..." class="w-full bg-white border border-gold/40 rounded-xl px-4 py-3 text-obsidian focus:border-gold focus:outline-none"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full gold-gradient-btn py-4 rounded-xl font-bold text-lg shadow-lg">
+                        Enviar Solicitud & Recibir Propuesta VIP ✈️
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-obsidian text-gray-300 py-16 px-6 border-t border-gold/30">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="md:col-span-2">
+                <div class="font-cinzel text-2xl font-bold tracking-widest text-white mb-4">LOS 4 MUNDOS DE ECUADOR</div>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4 max-w-md">
+                    Ecuador espera por ti. Un país donde el mundo entero cabe en un solo destino. 
+                    Costa, Andes, Amazonía y Galápagos te esperan con los brazos abiertos.
+                </p>
+                <p class="text-gold font-semibold text-sm">
+                    🌍 WWW.MASQUEVUELOS.COM
+                </p>
+            </div>
+            <div>
+                <h4 class="font-cinzel text-sm font-bold uppercase text-white tracking-wider mb-4">Los Mundos</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="#mundos" class="hover:text-gold transition-colors">🌊 La Costa</a></li>
+                    <li><a href="#mundos" class="hover:text-gold transition-colors">⛰️ Los Andes</a></li>
+                    <li><a href="#mundos" class="hover:text-gold transition-colors">🌿 La Amazonía</a></li>
+                    <li><a href="#mundos" class="hover:text-gold transition-colors">🐢 Galápagos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-cinzel text-sm font-bold uppercase text-white tracking-wider mb-4">Contacto Directo</h4>
+                <p class="text-sm text-gray-400 mb-2">Ecuador — Quito y Guayaquil</p>
+                <p class="text-sm text-gray-400 mb-2">WhatsApp: disponible en nuestra web</p>
+                <p class="text-sm text-gray-400">Respuesta rápida y personalizada</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
+            &copy; 2026 Los 4 Mundos de Ecuador — Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- MODAL DE RESERVA -->
+    <div id="booking-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 relative shadow-2xl border border-gold/40">
+            <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-gray-400 hover:text-obsidian font-bold text-lg">&times;</button>
+            <div class="text-center mb-6">
+                <span class="text-gold text-xs font-bold uppercase tracking-widest block mb-1">Interés en</span>
+                <h3 id="modal-title" class="font-cinzel text-2xl font-bold text-obsidian">Destino</h3>
+            </div>
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Tu Nombre</label>
+                    <input type="text" required class="w-full bg-gray-50 border border-gold/30 rounded-xl px-4 py-2.5 text-sm focus:border-gold focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Correo / WhatsApp</label>
+                    <input type="text" required class="w-full bg-gray-50 border border-gold/30 rounded-xl px-4 py-2.5 text-sm focus:border-gold focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-500 mb-1">Fecha estimada de viaje</label>
+                    <input type="date" required class="w-full bg-gray-50 border border-gold/30 rounded-xl px-4 py-2.5 text-sm focus:border-gold focus:outline-none">
+                </div>
+                <button type="submit" class="w-full gold-gradient-btn py-3 rounded-xl text-sm font-bold uppercase tracking-wider shadow-md">
+                    Enviar Solicitud de Información
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Menú móvil
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modal de reserva
+        function openBookingModal(expName) {
+            document.getElementById('modal-title').innerText = expName;
+            document.getElementById('booking-modal').classList.remove('hidden');
+        }
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            alert('¡Solicitud enviada con éxito! Un asesor te contactará pronto con toda la información.');
+            closeBookingModal();
+        }
+
+        // Formulario principal
+        function handleQuoteSubmit(e) {
+            e.preventDefault();
+            alert('🎉 ¡Solicitud recibida! Gracias por confiar en Los 4 Mundos de Ecuador. Recibirás la propuesta detallada en tu correo en breve.');
+            e.target.reset();
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('booking-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeBookingModal();
+        });
+    </script>
+</body>
+</html>

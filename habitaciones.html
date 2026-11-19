@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFV • Company.co</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --lino: #E9E1D2;
+            --verde-musgo: #52664B;
+            --tierra: #9A7656;
+            --bg-color: #2B2720;
+            --text-color: var(--lino);
+            --acento-principal: var(--verde-musgo);
+            --acento-secundario: var(--tierra);
+            --gradiente-tierra: linear-gradient(135deg, #9A7656 0%, #B89570 50%, #D4B896 100%);
+            --gradiente-musgo: linear-gradient(135deg, #52664B 0%, #6A7F62 50%, #84997C 100%);
+            --gradiente-lino: linear-gradient(135deg, #E9E1D2 0%, #F2EDE4 50%, #D9D0C0 100%);
+            --card-bg: rgba(82, 102, 75, 0.25);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+        h1, h2, h3, h4, .logo-emblem {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Fondo dinámico naturaleza de sierra / andino */
+        #dynamic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -3;
+            background: linear-gradient(rgba(43, 39, 32, 0.65), rgba(82, 102, 75, 0.55)),
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=90') center/cover no-repeat;
+            background-attachment: fixed;
+            filter: brightness(1.05) contrast(1.1);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        canvas.particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        /* Barra de navegación minimalista */
+        header.top-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 6%;
+            background: rgba(43, 39, 32, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(154, 118, 86, 0.45);
+            z-index: 1000;
+        }
+        .logo-emblem {
+            font-size: 1.35rem;
+            font-weight: 700;
+            background: var(--gradiente-tierra);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+        nav.unified-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        nav.unified-nav ul li a {
+            text-decoration: none;
+            color: var(--lino);
+            font-size: 0.92rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        nav.unified-nav ul li a:hover,
+        nav.unified-nav ul li a.active {
+            color: var(--tierra);
+        }
+        .nav-btn-reserve {
+            padding: 8px 22px !important;
+            background: var(--gradiente-tierra) !important;
+            color: #2B2720 !important;
+            border-radius: 20px;
+            font-weight: 600 !important;
+        }
+        @media (max-width: 650px) {
+            nav.unified-nav ul { gap: 16px; font-size: 0.82rem; }
+            header.top-header { padding: 14px 4%; }
+        }
+        /* Hero Section */
+        section.hero {
+            min-height: 94vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 20px 60px;
+            position: relative;
+        }
+        .hero span {
+            color: var(--tierra);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            background: var(--gradiente-tierra);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--lino);
+            max-width: 720px;
+            margin-bottom: 40px;
+            line-height: 1.75;
+            font-weight: 300;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+        }
+        .hero-stats {
+            display: flex;
+            gap: 45px;
+            margin-bottom: 45px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .hero-stat-item h4 {
+            font-size: 1.8rem;
+            color: var(--tierra);
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+        }
+        .hero-stat-item p {
+            font-size: 0.82rem;
+            color: var(--lino);
+            letter-spacing: 1px;
+            margin-bottom: 0;
+            text-transform: uppercase;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-gold {
+            padding: 15px 38px;
+            background: var(--gradiente-tierra);
+            border: none;
+            color: #2B2720;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-gold:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 14px 30px rgba(154, 118, 86, 0.4);
+        }
+        .btn-gold.outline {
+            background: transparent;
+            border: 1px solid var(--tierra);
+            color: var(--tierra);
+        }
+        .btn-gold.outline:hover {
+            background: rgba(154, 118, 86, 0.15);
+        }
+        /* Sección Habitaciones */
+        section.division-section {
+            padding: 95px 8%;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .section-header span {
+            color: var(--tierra);
+            font-size: 0.85rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+        .section-header h2 {
+            font-size: 2.7rem;
+            margin-top: 10px;
+            color: var(--lino);
+        }
+        .section-header hr {
+            width: 90px;
+            height: 2px;
+            background: var(--gradiente-tierra);
+            border: none;
+            margin: 20px auto 0;
+        }
+        .room-showcase-container {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 35px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+        @media (max-width: 950px) {
+            .room-showcase-container { grid-template-columns: 1fr; }
+        }
+        .room-preview-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(154, 118, 86, 0.45);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 24px 50px rgba(0,0,0,0.5);
+            transition: all 0.4s ease;
+        }
+        .room-img-container {
+            position: relative;
+            height: 380px;
+            overflow: hidden;
+        }
+        .room-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .room-preview-card:hover .room-img-container img {
+            transform: scale(1.05);
+        }
+        .room-img-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(43, 39, 32, 0.95), transparent);
+            padding: 30px;
+        }
+        .room-preview-content {
+            padding: 35px;
+        }
+        .room-preview-content h3 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: var(--lino);
+        }
+        .room-preview-content p {
+            color: var(--lino);
+            opacity: 0.85;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        .room-amenities-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .pill-item {
+            font-size: 0.78rem;
+            color: var(--lino);
+            background: rgba(233, 225, 210, 0.08);
+            border: 1px solid rgba(154, 118, 86, 0.35);
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .pill-item i { color: var(--tierra); }
+        .room-selector-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .room-selector-item small {
+            display: block;
+            color: var(--tierra);
+            font-size: 0.75rem;
+            margin-top: 5px;
+        }
+        .listing-detail-note {
+            margin-top: 16px;
+            font-size: 0.82rem;
+            opacity: 0.75;
+            line-height: 1.6;
+        }
+
+        /* Alojamiento externo de Airbnb */
+        .airbnb-listing {
+            margin-top: 35px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 24px;
+            align-items: center;
+            padding: 30px 35px;
+            background: var(--card-bg);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(154, 118, 86, 0.55);
+            border-radius: 24px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+        }
+        .airbnb-listing h3 {
+            color: var(--lino);
+            font-size: 1.65rem;
+            margin-bottom: 10px;
+        }
+        .airbnb-listing p {
+            color: var(--lino);
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+        .airbnb-listing .airbnb-label {
+            color: var(--tierra);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 8px;
+        }
+        @media (max-width: 650px) {
+            .airbnb-listing {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
+            .airbnb-listing .btn-gold {
+                text-align: center;
+            }
+        }
+        .room-selector-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(82, 102, 75, 0.35);
+            border-radius: 16px;
+            padding: 22px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .room-selector-item:hover, .room-selector-item.active {
+            border-color: var(--tierra);
+            background: rgba(154, 118, 86, 0.15);
+            transform: translateX(6px);
+        }
+        .room-selector-item h4 {
+            font-size: 1.25rem;
+            color: var(--lino);
+            margin-bottom: 4px;
+        }
+        .room-selector-item p {
+            font-size: 0.85rem;
+            color: var(--lino);
+            opacity: 0.7;
+        }
+        .room-price-badge {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--tierra);
+            font-family: 'Playfair Display', serif;
+        }
+        /* Sección Normas */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+        .rule-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(82, 102, 75, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s ease;
+        }
+        .rule-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--tierra);
+        }
+        .rule-card i {
+            font-size: 1.8rem;
+            color: var(--tierra);
+            margin-bottom: 18px;
+        }
+        .rule-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--lino);
+        }
+        .rule-card p {
+            color: var(--lino);
+            opacity: 0.8;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+        /* Bloque de Reserva */
+        .booking-section {
+            background: rgba(82, 102, 75, 0.2);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(154, 118, 86, 0.45);
+            border-radius: 24px;
+            padding: 60px 45px;
+            max-width: 860px;
+            margin: 50px auto 0;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        }
+        .booking-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-top: 35px;
+        }
+        @media (max-width: 650px) {
+            .booking-form { grid-template-columns: 1fr; }
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group.full {
+            grid-column: span 2;
+        }
+        @media (max-width: 650px) {
+            .form-group.full { grid-column: span 1; }
+        }
+        .form-group label {
+            font-size: 0.88rem;
+            color: var(--lino);
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            background: rgba(43, 39, 32, 0.8);
+            border: 1px solid rgba(154, 118, 86, 0.35);
+            padding: 15px 18px;
+            border-radius: 12px;
+            color: var(--lino);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--tierra);
+            box-shadow: 0 0 15px rgba(154, 118, 86, 0.25);
+        }
+        .nota-precios {
+            text-align: center;
+            color: var(--lino);
+            opacity: 0.75;
+            font-size: 0.86rem;
+            margin-top: 25px;
+            font-style: italic;
+        }
+        /* Avatar Guía Dinámico */
+        #interactive-guide {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .avatar-speech {
+            background: rgba(43, 39, 32, 0.95);
+            border: 1px solid var(--tierra);
+            padding: 14px 22px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            color: var(--lino);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+            max-width: 250px;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: all 0.35s ease;
+            pointer-events: none;
+        }
+        .avatar-speech.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .avatar-node {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: var(--gradiente-tierra);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 28px rgba(154, 118, 86, 0.5);
+            animation: pulse-tierra 3s infinite;
+        }
+        .avatar-node svg {
+            width: 32px;
+            height: 32px;
+            fill: #2B2720;
+        }
+        @keyframes pulse-tierra {
+            0% { box-shadow: 0 0 0 0 rgba(154, 118, 86, 0.6); }
+            70% { box-shadow: 0 0 0 18px rgba(154, 118, 86, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(154, 118, 86, 0); }
+        }
+        footer {
+            border-top: 1px solid rgba(154, 118, 86, 0.35);
+            padding: 45px 8%;
+            text-align: center;
+            color: var(--lino);
+            opacity: 0.75;
+            font-size: 0.86rem;
+            background: rgba(43, 39, 32, 0.85);
+            backdrop-filter: blur(12px);
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body onmousemove="parallaxBg(event)">
+    <div id="dynamic-bg"></div>
+    <canvas class="particles" id="particleCanvas"></canvas>
+    
+    <!-- Navegación -->
+    <header class="top-header">
+        <a href="#inicio" class="logo-emblem" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+            <span style="font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: bold; letter-spacing: 0.2em; color: var(--lino);">DFV</span>
+            <span style="font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--tierra); border-left: 1px solid rgba(154, 118, 86, 0.5); padding-left: 8px;">COMPANY & CO.</span>
+        </a>
+        <nav class="unified-nav">
+            <ul>
+                <li><a href="presentacion.html">Inicio</a></li>
+                <li><a href="#habitaciones" class="active">Habitaciones</a></li>
+                <li><a href="#normas">Normas</a></li>
+                <li><a href="#reservar" class="nav-btn-reserve">Reservar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <span>Naturaleza Andina & Santuario de Altura</span>
+        <h1>Quinta Lina</h1>
+        <p>Inmersión total en la naturaleza de la sierra, aire puro de montaña, luz dorada del altiplano y descanso exclusivo entre la Killa Room y la Inti Room.</p>
+        
+        <div class="hero-stats">
+            <div class="hero-stat-item">
+                <h4>2 Suites</h4>
+                <p>Killa & Inti Room</p>
+            </div>
+            <div class="hero-stat-item">
+                <h4>Sierra</h4>
+                <p>Naturaleza Andina</p>
+            </div>
+            <div class="hero-stat-item">
+                <h4>24/7</h4>
+                <p>Concierge VIP</p>
+            </div>
+        </div>
+        <div class="hero-buttons">
+            <a href="#habitaciones" class="btn-gold" onclick="triggerAvatarAdvice('Conoce la Killa Room y la Inti Room en Quinta Lina Sierra.')">Ver Habitaciones</a>
+            <a href="#normas" class="btn-gold outline" onclick="triggerAvatarAdvice('Consulta las normas de convivencia.')">Ver Normas</a>
+            <a href="#reservar" class="btn-gold" onclick="triggerAvatarAdvice('Agenda tu estadía en Quinta Lina.')">Reservar Estadía</a>
+        </div>
+    </section>
+
+    <!-- Habitaciones -->
+    <section class="division-section" id="habitaciones">
+        <div class="section-header">
+            <span>Arquitectura y Luz Natural Andina</span>
+            <h2>Habitaciones • Killa Room & Inti Room</h2>
+            <hr>
+        </div>
+        <div class="room-showcase-container">
+            <div class="room-preview-card" id="roomDisplayCard">
+                <div class="room-img-container">
+                    <img id="activeRoomImg" src="killa room.jpeg" alt="Habitación Principal Killa Room">
+                    <div class="room-img-overlay">
+                        <span id="activeRoomTag" style="color:var(--tierra); font-size:0.85rem; letter-spacing:1.5px;">HABITACIÓN PRINCIPAL • KILLA ROOM</span>
+                    </div>
+                </div>
+                <div class="room-preview-content">
+                    <h3 id="activeRoomTitle">Killa Room (Habitación Principal)</h3>
+                    <p id="activeRoomDesc">Un espacio cálido e íntimo pensado para el descanso profundo y la contemplación del entorno natural de la quinta.</p>
+                    <div class="room-amenities-pills">
+                        <span class="pill-item"><i class="fas fa-bed"></i> 1 Cama Queen</span>
+                        <span class="pill-item"><i class="fas fa-users"></i> Capacidad: 2 personas</span>
+                        <span class="pill-item"><i class="fas fa-wifi"></i> Wi-Fi alta velocidad</span>
+                        <span class="pill-item"><i class="fas fa-bath"></i> Baño privado acabados naturales</span>
+                        <span class="pill-item"><i class="fas fa-mug-hot"></i> Estación infusiones cortesía</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="room-price-badge" id="activeRoomPrice">$130 / noche</span>
+                        <a id="selectRoomBtn" href="#reservar" class="btn-gold" style="padding: 10px 24px; font-size:0.82rem;" onclick="selectRoomForBooking()">Seleccionar Esta Suite</a>
+                    </div>
+                </div>
+            </div>
+            <div class="room-selector-list">
+                <div class="room-selector-item active" onclick="switchRoomData('killaRoom', this)">
+                    <div>
+                        <h4>Habitación Principal • Killa Room</h4>
+                        <p>1 Cama Queen • Calidez & Estación de infusiones</p>
+                    </div>
+                    <span class="room-price-badge">$130</span>
+                </div>
+                <div class="room-selector-item" onclick="switchRoomData('intiRoom', this)">
+                    <div>
+                        <h4>Habitación Doble • Inti Room</h4>
+                        <p>2 Camas Individuales • Silencio y vista a jardines</p>
+                    </div>
+                    <span class="room-price-badge">$115</span>
+                </div>
+                <div class="room-selector-item" onclick="switchRoomData('casaVistaMontana', this)">
+                    <div>
+                        <h4>Casa Vista Montaña</h4>
+                        <p>Alojamiento entero • Baños, Ecuador</p>
+                        <small>6 huéspedes · 3 habitaciones · Garaje</small>
+                    </div>
+                    <span class="room-price-badge">Airbnb</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Normas -->
+    <section class="division-section" id="normas">
+        <div class="section-header">
+            <span>Convivencia & Cuidado del Entorno</span>
+            <h2>Normas de la Quinta</h2>
+            <hr>
+        </div>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <i class="fas fa-volume-mute"></i>
+                <h4>Silencio & Paz Andina</h4>
+                <p>Respetamos la tranquilidad del entorno montañoso. Horario de silencio a partir de las 22:00.</p>
+            </div>
+            <div class="rule-card">
+                <i class="fas fa-seedling"></i>
+                <h4>Cuidado del Ecosistema</h4>
+                <p id="ruleGardensText">Prohibido extraer flora nativa; los jardines con sus dibujitos y senderos están para la contemplación.</p>
+            </div>
+            <div class="rule-card">
+                <i class="fas fa-smoking-ban"></i>
+                <h4>Espacios Libres de Humo</h4>
+                <p>No está permitido fumar dentro de las habitaciones Killa Room ni Inti Room.</p>
+            </div>
+            <div class="rule-card">
+                <i class="fas fa-clock"></i>
+                <h4>Check-in / Check-out</h4>
+                <p>Check-in desde las 14:00 hrs. Check-out hasta las 11:30 hrs para preparación con aroma a leña.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservar -->
+    <section class="division-section" id="reservar">
+        <div class="booking-section">
+            <div class="section-header" style="margin-bottom: 20px;">
+                <span>Concierge & Hospedaje Sierra</span>
+                <h2>Reservar en DFV Quinta Lina</h2>
+                <hr>
+            </div>
+            <p class="nota-precios" style="margin-top:0; margin-bottom:25px;">Selecciona tu habitación andina preferida:</p>
+            
+            <form class="booking-form" id="formReserva">
+                <div class="form-group">
+                    <label for="nombreReserva">Nombre y Apellido</label>
+                    <input type="text" id="nombreReserva" placeholder="Ej. Camila Torres" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefonoReserva">Teléfono / WhatsApp</label>
+                    <input type="tel" id="telefonoReserva" placeholder="+593 99 999 9999" required>
+                </div>
+                <div class="form-group">
+                    <label for="roomBookingSelect">Habitación Seleccionada</label>
+                    <select id="roomBookingSelect" required>
+                        <option value="Habitación Principal • Killa Room ($130/noche)">Habitación Principal • Killa Room ($130/noche)</option>
+                        <option value="Habitación Doble • Inti Room ($115/noche)">Habitación Doble • Inti Room ($115/noche)</option>
+                        <option value="Casa Vista Montaña (consultar precio y disponibilidad en Airbnb)">Casa Vista Montaña (consultar precio y disponibilidad en Airbnb)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="checkinReserva">Fecha de Check-in</label>
+                    <input type="date" id="checkinReserva" required>
+                </div>
+                <div class="form-group full">
+                    <label for="notasReserva">Notas / Requerimiento Especial de Llegada</label>
+                    <textarea id="notasReserva" rows="3" placeholder="Ej. Hora estimada de llegada, preferencias de infusión..."></textarea>
+                </div>
+                <div class="form-group full">
+                    <button type="submit" class="btn-gold" style="width: 100%;">
+                        <i class="fab fa-whatsapp"></i> Confirmar Solicitud de Reserva
+                    </button>
+                </div>
+            </form>
+            <p class="nota-precios">* Tarifas incluyen desayuno andino artesanal de origen y acceso a senderos de naturaleza.</p>
+        </div>
+    </section>
+
+    <!-- Avatar -->
+    <div id="interactive-guide">
+        <div class="avatar-speech" id="avatarSpeech">Hola, soy tu guía DFV Quinta Lina Sierra. ¿Te ayudo con Killa Room o Inti Room?</div>
+        <div class="avatar-node" onclick="cycleAvatarMessage()" title="Haz clic para interactuar">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+            </svg>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 DFV Quinta Lina. Santuario Andino Boutique & Naturaleza de Sierra.</p>
+    </footer>
+
+    <script>
+        const roomData = {
+            killaRoom: {
+                title: 'Killa Room (Habitación Principal)',
+                tag: 'HABITACIÓN PRINCIPAL • KILLA ROOM',
+                price: '$130 / noche',
+                desc: 'Un espacio cálido e íntimo pensado para el descanso profundo y la contemplación del entorno natural de la quinta.',
+                pills: `
+                    <span class="pill-item"><i class="fas fa-bed"></i> 1 Cama Queen</span>
+                    <span class="pill-item"><i class="fas fa-users"></i> Capacidad: 2 personas</span>
+                    <span class="pill-item"><i class="fas fa-wifi"></i> Wi-Fi alta velocidad</span>
+                    <span class="pill-item"><i class="fas fa-bath"></i> Baño privado acabados naturales</span>
+                    <span class="pill-item"><i class="fas fa-mug-hot"></i> Estación infusiones cortesía</span>
+                `,
+                img: 'killa room.jpeg',
+                selectOption: 'Habitación Principal • Killa Room ($130/noche)'
+            },
+            intiRoom: {
+                title: 'Inti Room (Habitación Doble)',
+                tag: 'HABITACIÓN DOBLE • INTI ROOM',
+                price: '$115 / noche',
+                desc: 'Luminosa y acogedora, ideal para amigos o familiares que buscan confort, silencio y una estancia revitalizante.',
+                pills: `
+                    <span class="pill-item"><i class="fas fa-bed"></i> 2 Camas Individuales</span>
+                    <span class="pill-item"><i class="fas fa-users"></i> Capacidad: 2 personas</span>
+                    <span class="pill-item"><i class="fas fa-wifi"></i> Wi-Fi alta velocidad</span>
+                    <span class="pill-item"><i class="fas fa-bath"></i> Baño privado completo</span>
+                    <span class="pill-item"><i class="fas fa-eye"></i> Vista directa a los jardines con sus dibujitos</span>
+                `,
+                img: 'inti room.jpeg',
+                selectOption: 'Habitación Doble • Inti Room ($115/noche)'
+            },
+            casaVistaMontana: {
+                title: 'Casa Vista Montaña',
+                tag: 'ALOJAMIENTO ENTERO • BAÑOS, ECUADOR',
+                price: 'Consultar en Airbnb',
+                desc: 'Casa completa privada con hermosa vista a la montaña, en una ubicación tranquila a pocos minutos del centro de Baños. Ideal para descansar, trabajar remoto o disfrutar en pareja o familia. Totalmente equipada, con Wi-Fi rápido y parqueadero.',
+                pills: `
+                    <span class="pill-item"><i class="fas fa-users"></i> Hasta 6 huéspedes</span>
+                    <span class="pill-item"><i class="fas fa-door-open"></i> 3 habitaciones</span>
+                    <span class="pill-item"><i class="fas fa-bed"></i> 3 camas</span>
+                    <span class="pill-item"><i class="fas fa-bath"></i> 2.5 baños</span>
+                    <span class="pill-item"><i class="fas fa-wifi"></i> Wi-Fi rápido</span>
+                    <span class="pill-item"><i class="fas fa-car"></i> Garaje / parqueadero</span>
+                    <span class="pill-item"><i class="fas fa-mountain"></i> Vista a la montaña</span>
+                    <span class="pill-item"><i class="fas fa-house"></i> Casa privada completa</span>
+                `,
+                img: 'casa-vista-montana.jpg',
+                selectOption: 'Casa Vista Montaña (consultar precio y disponibilidad en Airbnb)'
+            }
+        };
+        let currentRoomKey = 'killaRoom';
+        
+        function switchRoomData(key, el) {
+            currentRoomKey = key;
+            const data = roomData[key];
+            document.getElementById('activeRoomTitle').textContent = data.title;
+            document.getElementById('activeRoomTag').textContent = data.tag;
+            document.getElementById('activeRoomPrice').textContent = data.price;
+            document.getElementById('activeRoomDesc').textContent = data.desc;
+            document.getElementById('activeRoomImg').src = data.img;
+            document.querySelector('.room-amenities-pills').innerHTML = data.pills;
+            const actionBtn = document.getElementById('selectRoomBtn');
+            const airbnbLinks = {
+                killaRoom: 'https://www.airbnb.com.ec/rooms/1677901326966922848?guests=1&adults=1&s=67&unique_share_id=035b3490-753f-480e-ac93-1e77fc896263',
+                intiRoom: 'https://www.airbnb.com.ec/rooms/1782891794040480437?guests=1&adults=1&s=67&unique_share_id=bf68633c-2812-417f-9db6-ca298fcb8607&source_impression_id=p3_1792085199_P3O4mXhfHA9yR82-',
+                casaVistaMontana: 'https://www.airbnb.com/rooms/1507240965366342816?guests=1&adults=1&s=67&unique_share_id=208f0803-8331-43fb-9430-d7da3b876f87'
+            };
+            if (airbnbLinks[key]) {
+                actionBtn.href = airbnbLinks[key];
+                actionBtn.target = '_blank';
+                actionBtn.rel = 'noopener noreferrer';
+                actionBtn.innerHTML = '<i class="fab fa-airbnb"></i> Reservar en Airbnb';
+                actionBtn.onclick = null;
+            } else {
+                actionBtn.href = '#reservar';
+                actionBtn.removeAttribute('target');
+                actionBtn.removeAttribute('rel');
+                actionBtn.innerHTML = 'Seleccionar Esta Suite';
+                actionBtn.onclick = selectRoomForBooking;
+            }
+            document.querySelectorAll('.room-selector-item').forEach(item => item.classList.remove('active'));
+            el.classList.add('active');
+            triggerAvatarAdvice(`Visualizando ${data.title} (${data.price}).`);
+        }
+        
+        function selectRoomForBooking() {
+            const data = roomData[currentRoomKey];
+            const selectEl = document.getElementById('roomBookingSelect');
+            if (selectEl) selectEl.value = data.selectOption;
+            triggerAvatarAdvice(`Seleccionado ${data.title} en el formulario.`);
+        }
+        
+        function parallaxBg(e) {
+            const bg = document.getElementById('dynamic-bg');
+            const x = (e.clientX / window.innerWidth - 0.5) * 16;
+            const y = (e.clientY / window.innerHeight - 0.5) * 16;
+            bg.style.transform = `scale(1.05) translate(${x}px, ${y}px)`;
+        }
+        
+        // Partículas en tono tierra
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+        
+        for (let i = 0; i < 45; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 1.8,
+                vx: (Math.random() - 0.5) * 0.25,
+                vy: (Math.random() - 0.5) * 0.25,
+                alpha: Math.random() * 0.5 + 0.15
+            });
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = '#9A7656';
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = width;
+                if (p.x > width) p.x = 0;
+                if (p.y < 0) p.y = height;
+                if (p.y > height) p.y = 0;
+                ctx.globalAlpha = p.alpha;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+        
+        // Mensajes del avatar
+        const speechBubble = document.getElementById('avatarSpeech');
+        const messages = [
+            "Bienvenido a DFV Quinta Lina Sierra. Explora Killa Room e Inti Room.",
+            "Killa Room es nuestra habitación principal con 1 Cama Queen y estación de infusiones.",
+            "Inti Room ofrece 2 camas individuales y vista directa a los jardines con sus dibujitos."
+        ];
+        let msgIndex = 0;
+        let speechTimeout;
+        
+        function triggerAvatarAdvice(customText) {
+            speechBubble.textContent = customText || messages[msgIndex];
+            speechBubble.classList.add('active');
+            clearTimeout(speechTimeout);
+            speechTimeout = setTimeout(() => speechBubble.classList.remove('active'), 6000);
+        }
+        
+        function cycleAvatarMessage() {
+            msgIndex = (msgIndex + 1) % messages.length;
+            triggerAvatarAdvice(messages[msgIndex]);
+        }
+        
+        setTimeout(() => {
+            triggerAvatarAdvice("¡Hola! Explora Killa Room e Inti Room en Quinta Lina Sierra.");
+        }, 1200);
+        
+        // Envío de reserva por WhatsApp
+        document.getElementById('formReserva').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombreReserva').value;
+            const telefono = document.getElementById('telefonoReserva').value;
+            const habitacion = document.getElementById('roomBookingSelect').value;
+            const checkin = document.getElementById('checkinReserva').value;
+            const notas = document.getElementById('notasReserva').value;
+            
+            const numeroWhatsApp = "593983842601";
+            const texto = `Hola, Quinta Lina. Me gustaría confirmar una reserva de hospedaje:\n\n` +
+                `*Nombre:* ${nombre}\n` +
+                `*Teléfono:* ${telefono}\n` +
+                `*Habitación:* ${habitacion}\n` +
+                `*Fecha Check-in:* ${checkin}\n` +
+                `*Notas/Requerimientos:* ${notas}`;
+            
+            const mensajeCodificado = encodeURIComponent(texto);
+            if (typeof triggerAvatarAdvice === 'function') {
+                triggerAvatarAdvice('¡Solicitud registrada con éxito! Te confirmaremos por WhatsApp.');
+            }
+            window.open(`https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensajeCodificado}`, '_blank');
+        });
+    </script>
+</body>
+</html>

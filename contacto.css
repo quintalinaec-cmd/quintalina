@@ -1,0 +1,511 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+/* ==========================================================================
+   1. Variables Globales & Reset - Quinta Lina
+   ========================================================================== */
+:root {
+    --verde-bosque: #2D4A3E;    /* Color Primario */
+    --verde-hoja: #4A7C59;      /* Color Secundario */
+    --tierra-calido: #8C6239;   /* Color de Acento Principal */
+    --dorado-suave: #D4AF37;    /* Acento Secundario / Highlights */
+    --crema-fondo: #F9F8F3;     /* Fondo de página */
+    --blanco-puro: #FFFFFF;     /* Fondo para tarjetas */
+    --texto-oscuro: #2C3531;    /* Texto principal */
+    --texto-gris: #5A6561;      /* Texto secundario */
+    --texto-claro: #ECE8E3;     /* Texto sobre fondos oscuros */
+    --border-color: #E2E0D8;    /* Bordes sutiles */
+    --transicion-suave: all 0.3s ease-in-out;
+}
+
+/* Reset de estilos predeterminados */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+
+/* Estilos generales del body */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--crema-fondo);
+    color: var(--texto-oscuro);
+    line-height: 1.6;
+    animation: fadeIn 0.8s ease-out;
+    overflow-x: hidden;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(45, 74, 62, 0.05);
+    border-radius: 12px;
+    background-color: var(--blanco-puro);
+    border: 1px solid var(--border-color);
+    transition: var(--transicion-suave);
+}
+
+.container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(45, 74, 62, 0.08);
+}
+
+/* ==========================================================================
+   2. Header & Navegación
+   ========================================================================== */
+.header {
+    background: linear-gradient(rgba(45, 74, 62, 0.8), rgba(45, 74, 62, 0.85)), url('lujo.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 55vh;
+    padding: 100px 20px 60px;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Menú de navegación */
+.menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    z-index: 10;
+    background: rgba(45, 74, 62, 0.5);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transicion-suave);
+}
+
+.logo img {
+    width: 140px;
+    height: auto;
+    z-index: 2;
+    animation: balanceo-logo 3s ease-in-out infinite alternate;
+    transform-origin: top center;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.navbar ul {
+    display: flex;
+    gap: 32px;
+    z-index: 2;
+}
+
+.navbar ul li a {
+    font-size: 15px;
+    color: var(--texto-claro);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: var(--transicion-suave);
+    position: relative;
+}
+
+.navbar ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--dorado-suave);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.navbar ul li a:hover::after,
+.navbar ul li a.active::after {
+    width: 100%;
+}
+
+.navbar ul li a.active,
+.navbar ul li a:hover {
+    color: var(--dorado-suave);
+}
+
+.header-txt {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards;
+    animation-delay: 0.3s;
+    position: relative;
+    z-index: 2;
+}
+
+.header-txt h1 {
+    font-size: clamp(2.8em, 6vw, 4.5em);
+    color: var(--blanco-puro);
+    font-family: "Playfair Display", serif;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.header-txt p {
+    font-size: clamp(1em, 2vw, 1.2em);
+    color: var(--texto-claro);
+    max-width: 650px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   3. Contenido Principal & Secciones
+   ========================================================================== */
+.main-content {
+    padding-top: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+section {
+    padding: 50px 0;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+section h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.2em, 4vw, 3.2em);
+    color: var(--verde-bosque);
+    margin-bottom: 35px;
+    position: relative;
+    display: inline-block;
+}
+
+section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: var(--tierra-calido);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+/* Información de contacto */
+.info-hotel {
+    background-color: var(--blanco-puro);
+}
+
+.info-detalles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.info-columna {
+    background-color: #FAF9F5;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: var(--transicion-suave);
+}
+
+.info-columna:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    border-color: var(--tierra-calido);
+}
+
+.info-columna p {
+    font-size: 1em;
+    margin-bottom: 12px;
+    color: var(--texto-oscuro);
+    display: flex;
+    align-items: center;
+}
+
+.info-columna p i {
+    color: var(--verde-hoja);
+    margin-right: 12px;
+    font-size: 1.2em;
+    width: 24px;
+    text-align: center;
+    transition: var(--transicion-suave);
+}
+
+.info-columna:hover p i {
+    color: var(--tierra-calido);
+}
+
+/* ==========================================================================
+   4. Formulario de Contacto
+   ========================================================================== */
+.formulario-contacto {
+    background-color: #FAF9F5;
+    border-radius: 8px;
+    padding: 40px 20px;
+}
+
+.contact-form {
+    max-width: 650px;
+    margin: 30px auto 0;
+    padding: 40px;
+    background-color: var(--blanco-puro);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--verde-bosque);
+    font-size: 0.95em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #DCD8CD;
+    border-radius: 4px;
+    font-size: 0.95em;
+    font-family: 'Poppins', sans-serif;
+    color: var(--texto-oscuro);
+    background-color: #FAFAFA;
+    transition: var(--transicion-suave);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background-color: var(--blanco-puro);
+    border-color: var(--tierra-calido);
+    box-shadow: 0 0 0 3px rgba(140, 98, 57, 0.15);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background-color: var(--verde-bosque);
+    color: var(--blanco-puro);
+    font-size: 0.95em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transicion-suave);
+}
+
+.btn-submit:hover {
+    background-color: var(--tierra-calido);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(140, 98, 57, 0.2);
+}
+
+/* ==========================================================================
+   5. Ubicación y Mapa
+   ========================================================================== */
+.mapa-ubicacion {
+    background-color: var(--blanco-puro);
+}
+
+.map-container {
+    width: 100%;
+    max-width: 950px;
+    margin: 30px auto 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 1px solid var(--border-color);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 400px;
+    border: 0;
+}
+
+.texto-informativo {
+    margin-top: 20px;
+    color: var(--texto-gris);
+    font-size: 1em;
+}
+
+.texto-informativo strong {
+    color: var(--verde-bosque);
+}
+
+/* ==========================================================================
+   6. Footer
+   ========================================================================== */
+.footer {
+    padding: 60px 0 30px;
+    background-color: #1E332B; /* Verde Bosque Nocturno */
+    color: var(--texto-claro);
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto 30px;
+    padding: 0 20px;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.link {
+    flex: 1;
+    min-width: 220px;
+    text-align: left;
+}
+
+.link h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1em;
+    color: var(--dorado-suave);
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.link h3::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background-color: var(--tierra-calido);
+    margin-top: 6px;
+}
+
+.link a {
+    font-size: 0.9em;
+    color: #C0C8C4;
+    display: block;
+    margin-bottom: 8px;
+    transition: var(--transicion-suave);
+}
+
+.link a:hover {
+    color: var(--dorado-suave);
+    transform: translateX(4px);
+}
+
+.link p {
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    color: #C0C8C4;
+}
+
+.link p i {
+    margin-right: 8px;
+    color: var(--dorado-suave);
+}
+
+.footer .copyright {
+    font-size: 0.85em;
+    color: #8A9892;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 20px;
+}
+
+/* ==========================================================================
+   7. Animaciones & Responsive
+   ========================================================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes balanceo-logo {
+    0% { transform: rotate(-3deg); }
+    100% { transform: rotate(3deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 992px) {
+    .menu {
+        padding: 15px 30px;
+    }
+    .navbar ul {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        padding: 20px;
+        position: static;
+        background-color: var(--verde-bosque);
+    }
+    .logo {
+        margin-bottom: 15px;
+    }
+    .navbar ul {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+    .container {
+        padding: 20px;
+        margin: 15px;
+    }
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .link {
+        text-align: center;
+    }
+    .link h3::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

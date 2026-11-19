@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFV.company.co | Nature Retreat & Wellness Experience by DFV</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --lino: #E9E1D2;
+            --musgo: #52664B;
+            --tierra: #9A7656;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--lino);
+            color: var(--musgo);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+        .font-cormorant {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .glass-box {
+            background: rgba(82, 102, 75, 0.18);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(154, 118, 86, 0.35);
+            box-shadow: 0 20px 40px rgba(82, 102, 75, 0.15);
+        }
+        .glass-nav {
+            background: rgba(82, 102, 75, 0.35);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(154, 118, 86, 0.3);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #E9E1D2 0%, #9A7656 50%, #52664B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+        /* MENÚ EN CUADROS: LETRA ELEGANTE Y MEJOR ESPACIADO */
+        .menu-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 50px;
+            padding: 12px 18px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.045em;
+            line-height: 1.5;
+            color: #52664B;
+            text-decoration: none;
+            border: 1px solid rgba(154, 118, 86, 0.45);
+            border-radius: 10px;
+            background: rgba(233, 225, 210, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 5px 16px rgba(40, 45, 32, 0.12);
+            transition:
+                background-color 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                transform 0.25s ease;
+        }
+        .menu-box:hover {
+            background: #E9E1D2;
+            border-color: #9A7656;
+            color: #3F4E39;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(40, 45, 32, 0.18);
+        }
+        .menu-box.active {
+            background: #52664B;
+            border-color: #9A7656;
+            color: #E9E1D2;
+            box-shadow: 0 6px 18px rgba(40, 45, 32, 0.16);
+        }
+        .menu-box:focus-visible {
+            outline: 2px solid #9A7656;
+            outline-offset: 3px;
+        }
+        /* MENÚ: 3 COLUMNAS Y 2 FILAS */
+.mobile-menu-hero {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(2, auto);
+    gap: 12px;
+    width: 100%;
+    max-width: 900px;
+    margin: 12px auto 0;
+}
+/* NINGÚN BOTÓN OCUPA TODA LA FILA */
+.mobile-menu-hero .menu-box:last-child {
+    grid-column: auto !important;
+}
+/* AJUSTES PARA PANTALLAS PEQUEÑAS */
+@media (max-width: 480px) {
+    .mobile-menu-hero {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        grid-template-rows: repeat(2, auto);
+        gap: 8px;
+    }
+    .menu-box {
+        min-width: 0;
+        min-height: 48px;
+        padding: 8px 4px;
+        font-size: 10px;
+        letter-spacing: 0;
+        overflow-wrap: anywhere;
+    }
+}
+        /* CUADROS DE ACCIÓN DEL HERO */
+        .hero-action {
+            min-width: 220px;
+            min-height: 58px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            border: 1px solid rgba(154, 118, 86, 0.5);
+            background: rgba(233, 225, 210, 0.5);
+            padding: 14px 24px;
+            color: #52664B;
+            transition: all .25s ease;
+        }
+        .hero-action:hover {
+            transform: translateY(-3px) scale(1.02);
+            background: rgba(154, 118, 86, 0.2);
+            box-shadow: 0 15px 30px rgba(82, 102, 75, 0.2);
+        }
+        ::selection {
+            background-color: #9A7656;
+            color: #E9E1D2;
+        }
+        @media (max-width: 480px) {
+            .mobile-menu-hero {
+                gap: 10px;
+                max-width: 420px;
+            }
+            .menu-box {
+                min-height: 48px;
+                padding: 10px 8px;
+                font-size: 11px;
+                letter-spacing: 0.025em;
+            }
+        }
+        @media (max-width: 360px) {
+            .mobile-menu-hero {
+                gap: 8px;
+            }
+            .menu-box {
+                font-size: 10px;
+                padding: 10px 5px;
+            }
+        }
+    </style>
+</head>
+<body class="relative min-h-screen overflow-x-hidden flex flex-col justify-between selection:bg-[#9A7656] selection:text-[#E9E1D2]">
+    <!-- IMAGEN DE FONDO ANDINA -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <img src="fondo 2.jpg"
+             alt="Entorno natural Quinta Lina Ambato"
+             class="w-full h-full object-cover object-center scale-105 brightness-110 contrast-90 transition-transform duration-1000">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#52664B]/50 via-black/35 to-[#9A7656]/40"></div>
+    </div>
+    <!-- MODAL FLOTANTE INTERACTIVO -->
+    <div id="serviceModal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="glass-box max-w-md w-full p-6 rounded-2xl border border-[#9A7656]/60 shadow-2xl relative animate-float">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-[#E9E1D2] hover:text-[#9A7656] text-lg">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modalContent" class="text-[#E9E1D2] text-xs md:text-sm leading-relaxed"></div>
+            <div class="mt-6 flex justify-end gap-3">
+                <button onclick="closeModal()" class="px-4 py-2 rounded-lg bg-[#52664B]/60 border border-[#E9E1D2]/20 text-xs text-[#E9E1D2] hover:bg-[#52664B]/90">
+                    Cerrar
+                </button>
+                <a href="contactenos.html" class="px-4 py-2 rounded-lg bg-[#9A7656] text-[#E9E1D2] text-xs font-bold hover:bg-[#b58c68]">
+                    Ir a Contacto
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <nav class="sticky top-0 z-40 w-full px-4 md:px-8 py-3.5 transition-all bg-transparent">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="presentacion.html" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-full bg-[#9A7656]/30 border border-[#9A7656]/60 flex items-center justify-center text-[#E9E1D2] text-sm group-hover:rotate-12 transition-transform shadow">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="font-cinzel text-lg md:text-xl font-bold tracking-[0.2em] text-[#E9E1D2] group-hover:text-[#9A7656] transition drop-shadow">
+                        DFV
+                    </span>
+                    <span class="text-xs font-cinzel tracking-widest text-[#E9E1D2]/80 border-l border-[#9A7656]/50 pl-2">
+                        COMPANY & CO.
+                    </span>
+                </div>
+            </a>
+            <!-- BOTÓN RESERVAR -->
+            <a href="contactenos.html"
+               class="bg-gradient-to-r from-[#9A7656] to-[#7d6148] hover:from-[#b58c68] hover:to-[#9A7656] text-[#E9E1D2] text-xs px-4 py-2 rounded-full font-bold transition shadow-xl tracking-wider">
+                <i class="fas fa-calendar-check mr-1"></i>
+                Reservar
+            </a>
+        </div>
+    </nav>
+    <!-- HERO QUINTA LINA -->
+    <header id="inicio" class="relative z-10 min-h-[85vh] flex flex-col items-center justify-center text-center px-4 py-12">
+        <span class="inline-block bg-[#9A7656]/25 text-[#E9E1D2] text-[10px] md:text-xs tracking-[0.3em] uppercase px-4 py-1.5 rounded-full mb-4 border border-[#9A7656]/50 font-semibold backdrop-blur-sm shadow-md">
+            NATURE RETREAT & WELLNESS EXPERIENCE
+        </span>
+        <h1 class="font-cinzel text-5xl md:text-7xl font-bold tracking-[0.15em] text-[#E9E1D2] drop-shadow-2xl mb-2">
+            QUINTA <span class="gold-gradient-text">LINA</span>
+        </h1>
+        <div class="w-48 h-[1px] bg-gradient-to-r from-transparent via-[#9A7656] to-transparent mx-auto my-4"></div>
+        <h2 class="font-cormorant italic text-2xl md:text-4xl text-[#E9E1D2] font-light mb-4 drop-shadow-lg">
+            Un Santuario para tu Alma
+        </h2>
+        <p class="max-w-2xl text-[#E9E1D2]/90 text-xs md:text-sm font-light leading-relaxed mb-8 px-2 drop-shadow">
+            Un refugio acogedor en medio de la naturaleza andina, donde el descanso, el bienestar y la conexión interior se convierten en una experiencia inolvidable.
+        </p>
+        <!-- MENÚ EN CUADROS MODIFICADO -->
+        <div id="mobileMenu" class="mobile-menu-hero" aria-hidden="false">
+            <a href="index.html" class="menu-box">
+                Inicio
+            </a>
+            <a href="presentacion.html" class="menu-box active">
+                Quinta Lina
+            </a>
+            <a href="eventos.html" class="menu-box">
+                Eventos &amp; Retiros
+            </a>
+            <a href="habitaciones.html" class="menu-box">
+                Hospedaje
+            </a>
+            <a href="galeria.html" class="menu-box">
+                Galería
+            </a>
+            <a href="https://www.dfvco.com"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="menu-box">
+                <i class="fas fa-globe mr-2"></i>
+                Ir a dfvco.com
+            </a>
+        </div>
+        <div class="mt-12 text-[10px] tracking-[0.3em] uppercase text-[#E9E1D2]/80 font-medium drop-shadow">
+            DESCUBRE &bull; RESPIRA &bull; CONECTA
+        </div>
+    </header>
+    <!-- CONTENIDOS PRINCIPALES -->
+    <main class="relative z-10 max-w-6xl mx-auto px-4 py-6 flex flex-col gap-12">
+        <!-- ESENCIA DE QUINTA LINA -->
+        <section id="esencia" class="glass-box p-6 md:p-10 rounded-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="relative rounded-xl overflow-hidden border border-[#9A7656]/45 group min-h-[320px] shadow-2xl">
+                    <img src="quinta 2.jpeg"
+                         alt="Entorno natural Quinta Lina"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 right-4 text-center">
+                        <span class="font-cinzel text-lg font-bold tracking-widest text-[#E9E1D2] drop-shadow">
+                            HUACHI GRANDE &bull; AMBATO
+                        </span>
+                        <p class="text-[10px] text-[#E9E1D2]/70 uppercase tracking-widest mt-1">
+                            Tungurahua, Ecuador
+                        </p>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <span class="text-[#9A7656] text-[10px] md:text-xs tracking-[0.25em] font-semibold uppercase">
+                        NUESTRA ESENCIA & FILOSOFÍA
+                    </span>
+                    <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-[#E9E1D2] mt-1 mb-4 drop-shadow">
+                        Vuelve a lo <em class="font-cormorant gold-gradient-text">esencial.</em>
+                    </h2>
+                    <p class="text-[#E9E1D2]/90 text-xs md:text-sm font-light leading-relaxed mb-3 drop-shadow-sm">
+                        Ubicada en Huachi Grande, Ambato, Quinta Lina es más que un alojamiento. Es un ecosistema diseñado para combinar en un mismo universo naturaleza, descanso, bienestar, recreación, fauna y experiencias holísticas.
+                    </p>
+                    <p class="text-[#E9E1D2]/90 text-xs md:text-sm font-light leading-relaxed mb-5 drop-shadow-sm">
+                        La tranquilidad del campo, el aire puro y la energía de la tierra crean el escenario perfecto para desconectarse del ritmo cotidiano. Te invitamos a pausar el ritmo acelerado y disfrutar del silencio, nuestro huerto orgánico y momentos que fortalecen la energía vital.
+                    </p>
+                    <blockquote class="border-l-2 border-[#9A7656]/80 pl-4 py-2 text-xs md:text-sm italic text-[#E9E1D2] font-cormorant font-light bg-[#52664B]/30 rounded-r-lg backdrop-blur-sm">
+                        “Un lugar para respirar profundo, reconectar contigo y permitir que la naturaleza haga su trabajo.”
+                    </blockquote>
+                    <div class="mt-6">
+                        <a href="https://www.airbnb.com.ec/rooms/1677561605691271048?guests=1&adults=1&s=67&unique_share_id=cb8df5fe-f91a-4849-ae3d-8b24a2d3e384"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-[#E9E1D2]/90 hover:bg-[#E9E1D2] border border-[#9A7656]/70 text-[#52664B] text-xs md:text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                            <i class="fab fa-airbnb text-2xl text-[#9A7656]"></i>
+                            <span>Encuéntranos en Airbnb</span>
+                            <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- EXPERIENCIAS -->
+        <section id="experiencia" class="text-center">
+            <span class="text-[#9A7656] text-[10px] md:text-xs tracking-[0.25em] font-semibold uppercase">
+                LA EXPERIENCIA QUINTA LINA
+            </span>
+            <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-[#E9E1D2] mt-1 mb-2 drop-shadow">
+                Más que un lugar, <em class="font-cormorant gold-gradient-text">una experiencia.</em>
+            </h2>
+            <p class="text-[#E9E1D2]/90 text-xs md:text-sm font-light mb-8 max-w-xl mx-auto drop-shadow-sm">
+                Aquí no vienes solamente a hospedarte. Vienes a vivir, sentir y reconectar.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+                <article class="glass-box p-6 rounded-xl hover:border-[#9A7656]/70 transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-cinzel text-xl font-bold text-[#9A7656]">01</span>
+                        <span class="text-2xl group-hover:scale-110 transition-transform">🌿</span>
+                    </div>
+                    <h3 class="font-cinzel text-lg font-bold text-[#E9E1D2] mb-2">Naturaleza</h3>
+                    <p class="text-xs text-[#E9E1D2]/80 font-light leading-relaxed">Conecta con la tranquilidad de los Andes, respira aire puro y disfruta de un entorno donde la naturaleza es parte de cada momento.</p>
+                </article>
+                <article class="glass-box p-6 rounded-xl hover:border-[#9A7656]/70 transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-cinzel text-xl font-bold text-[#9A7656]">02</span>
+                        <span class="text-2xl group-hover:scale-110 transition-transform">🏡</span>
+                    </div>
+                    <h3 class="font-cinzel text-lg font-bold text-[#E9E1D2] mb-2">Hospedaje</h3>
+                    <p class="text-xs text-[#E9E1D2]/80 font-light leading-relaxed">Espacios pensados para descansar, desconectarte del ritmo cotidiano y disfrutar de una estadía cálida y auténtica.</p>
+                </article>
+                <article class="glass-box p-6 rounded-xl hover:border-[#9A7656]/70 transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-cinzel text-xl font-bold text-[#9A7656]">03</span>
+                        <span class="text-2xl group-hover:scale-110 transition-transform">🧘</span>
+                    </div>
+                    <h3 class="font-cinzel text-lg font-bold text-[#E9E1D2] mb-2">Bienestar</h3>
+                    <p class="text-xs text-[#E9E1D2]/80 font-light leading-relaxed">Una experiencia que integra bienestar, cuidado personal y momentos para reconectar contigo mismo.</p>
+                </article>
+                <article class="glass-box p-6 rounded-xl hover:border-[#9A7656]/70 transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-cinzel text-xl font-bold text-[#9A7656]">04</span>
+                        <span class="text-2xl group-hover:scale-110 transition-transform">✨</span>
+                    </div>
+                    <h3 class="font-cinzel text-lg font-bold text-[#E9E1D2] mb-2">Experiencias</h3>
+                    <p class="text-xs text-[#E9E1D2]/80 font-light leading-relaxed">Vive encuentros, experiencias holísticas, recreación y momentos creados para disfrutar de una conexión más consciente.</p>
+                </article>
+                <article class="glass-box p-6 rounded-xl hover:border-[#9A7656]/70 transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-cinzel text-xl font-bold text-[#9A7656]">05</span>
+                        <span class="text-2xl group-hover:scale-110 transition-transform">🐾</span>
+                    </div>
+                    <h3 class="font-cinzel text-lg font-bold text-[#E9E1D2] mb-2">Pet Friendly</h3>
+                    <p class="text-xs text-[#E9E1D2]/80 font-light leading-relaxed">Las mascotas y los animales también forman parte de nuestra conexión con la naturaleza. Aquí todos son bienvenidos.</p>
+                </article>
+                <article class="glass-box p-6 rounded-xl hover:border-[#9A7656]/70 transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-cinzel text-xl font-bold text-[#9A7656]">06</span>
+                        <span class="text-2xl group-hover:scale-110 transition-transform">🌱</span>
+                    </div>
+                    <h3 class="font-cinzel text-lg font-bold text-[#E9E1D2] mb-2">Vida Consciente</h3>
+                    <p class="text-xs text-[#E9E1D2]/80 font-light leading-relaxed">Un espacio para desacelerar, disfrutar de lo sencillo y encontrar bienestar en las pequeñas cosas.</p>
+                </article>
+            </div>
+        </section>
+        <!-- SERVICIOS GENERALES -->
+        <section class="glass-box p-8 md:p-12 rounded-2xl text-center">
+            <span class="text-[#9A7656] text-[10px] md:text-xs tracking-[0.25em] font-semibold uppercase block mb-1">
+                COMPLEMENTOS DE LA ESTANCIA
+            </span>
+            <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-[#E9E1D2] mb-6 drop-shadow">
+                Servicios de Quinta Lina
+            </h2>
+            <div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#9A7656] to-transparent mx-auto mb-8"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                <div class="bg-[#52664B]/40 backdrop-blur-md p-6 rounded-xl border border-[#E9E1D2]/20 flex flex-col justify-between group hover:border-[#9A7656]/60 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-[#9A7656]/30 border border-[#9A7656]/50 flex items-center justify-center text-[#E9E1D2] text-lg mb-4">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3 class="font-cinzel text-lg font-bold text-[#E9E1D2] mb-2">Gastronomía & Catering</h3>
+                        <div class="text-xs text-[#E9E1D2]/80 font-light leading-relaxed mb-4 space-y-1">
+                            <p>&bull; Desayuno Tradicional</p>
+                            <p>&bull; Parrilladas / asadero</p>
+                            <p>&bull; Catering para eventos</p>
+                            <p>&bull; Experiencias gastronómicas</p>
+                        </div>
+                    </div>
+                    <button onclick="openModal('Gastronomía & Catering: Disfruta de desayunos andinos tradicionales, opciones de asadero/parrillada bajo reserva, y servicio de catering especializado para retiros y eventos privados.')" class="text-[#9A7656] text-xs font-bold hover:underline text-left">Ver Menú &rarr;</button>
+                </div>
+                <div class="bg-[#52664B]/40 backdrop-blur-md p-6 rounded-xl border border-[#E9E1D2]/20 flex flex-col justify-between group hover:border-[#9A7656]/60 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-[#9A7656]/30 border border-[#9A7656]/50 flex items-center justify-center text-[#E9E1D2] text-lg mb-4">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="font-cinzel text-lg font-bold text-[#E9E1D2] mb-2">Hospedaje</h3>
+                        <div class="text-xs text-[#E9E1D2]/80 font-light leading-relaxed mb-4 space-y-1">
+                            <p>&bull; Habitaciones privadas, parejas y familias.</p>
+                            <p>&bull; Experiencia de campo y calma.</p>
+                        </div>
+                    </div>
+                    <button onclick="openModal('Hospedaje: Habitaciones confortables y cálidas inspiradas en arquitectura andina contemporánea, con vistas a áreas verdes y total privacidad.')" class="text-[#9A7656] text-xs font-bold hover:underline text-left">Más Detalles &rarr;</button>
+                </div>
+                <div class="bg-[#52664B]/40 backdrop-blur-md p-6 rounded-xl border border-[#E9E1D2]/20 flex flex-col justify-between group hover:border-[#9A7656]/60 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-[#9A7656]/30 border border-[#9A7656]/50 flex items-center justify-center text-[#E9E1D2] text-lg mb-4">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3 class="font-cinzel text-lg font-bold text-[#E9E1D2] mb-2">🌎 Turismo & Experiencias</h3>
+                        <div class="text-xs text-[#E9E1D2]/80 font-light leading-relaxed mb-4 space-y-1">
+                            <p>&bull; Tours por Ecuador</p>
+                            <p>&bull; Excursiones & traslados</p>
+                            <p>&bull; Alianzas Travel & Masquevuelos</p>
+                        </div>
+                    </div>
+                    <button onclick="openModal('Turismo & Experiencias: Conectamos tu estadía con excursiones guiadas por la Avenida de los Volcanes, rutas culturales y traslados seguros.')" class="text-[#9A7656] text-xs font-bold hover:underline text-left">Conoce más &rarr;</button>
+                </div>
+                <div class="bg-[#52664B]/40 backdrop-blur-md p-6 rounded-xl border border-[#E9E1D2]/20 flex flex-col justify-between group hover:border-[#9A7656]/60 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-[#9A7656]/30 border border-[#9A7656]/50 flex items-center justify-center text-[#E9E1D2] text-lg mb-4">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="font-cinzel text-lg font-bold text-[#E9E1D2] mb-2">🐾 Naturaleza & Campo</h3>
+                        <div class="text-xs text-[#E9E1D2]/80 font-light leading-relaxed mb-4 space-y-1">
+                            <p>&bull; Huerto orgánico</p>
+                            <p>&bull; Animales rescatados</p>
+                            <p>&bull; Gallinero & jardines</p>
+                            <p>&bull; Fogata nocturna</p>
+                        </div>
+                    </div>
+                    <button onclick="openModal('Naturaleza & Campo: Espacio vivo para recorrer senderos de altura, interactuar con animalitos rescatados y disfrutar fogatas con smores o vino caliente.')" class="text-[#9A7656] text-xs font-bold hover:underline text-left">Solicitar &rarr;</button>
+                </div>
+            </div>
+        </section>
+        <!-- VIDA DE CAMPO Y ANIMALES -->
+        <section class="text-center">
+            <span class="text-[#9A7656] text-[10px] md:text-xs tracking-[0.25em] font-semibold uppercase">
+                EL ESPACIO Y LA FAUNA
+            </span>
+            <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-[#E9E1D2] mt-1 mb-2 drop-shadow">
+                Naturaleza, Animales y <em class="font-cormorant gold-gradient-text">Desconexión.</em>
+            </h2>
+            <p class="text-[#E9E1D2]/90 text-xs md:text-sm font-light mb-8 max-w-xl mx-auto drop-shadow-sm">
+                Espacios vivos creados para interactuar en armonía con el entorno andino.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                <div class="glass-box p-6 md:p-8 rounded-xl hover:border-[#9A7656]/60 transition-all group">
+                    <div class="w-12 h-12 rounded-full bg-[#9A7656]/30 border border-[#9A7656]/50 flex items-center justify-center text-[#9A7656] text-xl mb-4 group-hover:rotate-12 transition-transform">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-[#E9E1D2] mb-2">Naturaleza & Campo</h3>
+                    <p class="text-xs md:text-sm text-[#E9E1D2]/80 font-light leading-relaxed">
+                        Recorre nuestro huerto orgánico, disfruta del gallinero criollo, colmenas de miel y relájate en la zona de fogata bajo el mágico cielo andino.
+                    </p>
+                </div>
+                <div class="glass-box p-6 md:p-8 rounded-xl hover:border-[#9A7656]/60 transition-all group">
+                    <div class="w-12 h-12 rounded-full bg-[#9A7656]/30 border border-[#9A7656]/50 flex items-center justify-center text-[#9A7656] text-xl mb-4 group-hover:rotate-12 transition-transform">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-[#E9E1D2] mb-2">Vida Animal & Rescatados</h3>
+                    <p class="text-xs md:text-sm text-[#E9E1D2]/80 font-light leading-relaxed">
+                        Conoce e interactúa de forma responsable con nuestros animales rescatados: mini pigs (¡incluyendo a Teodoro!), perros, gatos, patos y gallinas.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- ÁREAS SOCIALES Y RECREATIVAS -->
+        <section class="glass-box p-6 md:p-10 rounded-2xl text-center">
+            <span class="inline-block bg-[#9A7656]/25 text-[#E9E1D2] text-[10px] md:text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-3 border border-[#9A7656]/50 font-semibold backdrop-blur-sm">
+                INSTALACIONES Y AMENIDADES
+            </span>
+            <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-[#E9E1D2] mb-8 drop-shadow">
+                Áreas Recreativas y Sociales
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <div class="bg-[#52664B]/45 backdrop-blur-md p-6 rounded-xl border border-[#E9E1D2]/20">
+                    <div class="flex items-center gap-3 mb-4 text-[#9A7656]">
+                        <i class="fas fa-couch text-xl"></i>
+                        <h3 class="font-cinzel font-bold text-base text-[#E9E1D2]">Descanso & Convivencia</h3>
+                    </div>
+                    <ul class="space-y-3 text-xs text-[#E9E1D2]/80 font-light">
+                        <li class="flex items-center gap-2"><i class="fas fa-couch text-[#9A7656]"></i> Sala Boho Lounge</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-coffee text-[#9A7656]"></i> Bar y Cafetería</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-utensils text-[#9A7656]"></i> Cocina central con asadero</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-fire text-[#9A7656]"></i> Zona de fogatas nocturnas</li>
+                    </ul>
+                </div>
+                <div class="bg-[#52664B]/45 backdrop-blur-md p-6 rounded-xl border border-[#E9E1D2]/20">
+                    <div class="flex items-center gap-3 mb-4 text-[#9A7656]">
+                        <i class="fas fa-gamepad text-xl"></i>
+                        <h3 class="font-cinzel font-bold text-base text-[#E9E1D2]">Juegos & Entretenimiento</h3>
+                    </div>
+                    <ul class="space-y-3 text-xs text-[#E9E1D2]/80 font-light">
+                        <li class="flex items-center gap-2"><i class="fas fa-circle text-[#9A7656]"></i> Mesa de billar</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-table-tennis text-[#9A7656]"></i> Ping Pong</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-futbol text-[#9A7656]"></i> Futbolín</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-users text-[#9A7656]"></i> Espacios para eventos privados</li>
+                    </ul>
+                </div>
+                <div class="bg-[#52664B]/45 backdrop-blur-md p-6 rounded-xl border border-[#E9E1D2]/20">
+                    <div class="flex items-center gap-3 mb-4 text-[#9A7656]">
+                        <i class="fas fa-running text-xl"></i>
+                        <h3 class="font-cinzel font-bold text-base text-[#E9E1D2]">Deporte & Movimiento</h3>
+                    </div>
+                    <ul class="space-y-3 text-xs text-[#E9E1D2]/80 font-light">
+                        <li class="flex items-center gap-2"><i class="fas fa-baseball-ball text-[#9A7656]"></i> Cancha de tenis</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-futbol text-[#9A7656]"></i> Multi-court indoor (Fútbol y Vóley)</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-spa text-[#9A7656]"></i> Espacios al aire libre para Yoga</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-walking text-[#9A7656]"></i> Senderos verdes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- PIE DE PÁGINA -->
+    <footer class="relative z-10 w-full max-w-6xl mx-auto p-4 md:p-6 pb-8 text-center text-xs text-[#E9E1D2]">
+        <div class="mt-8 pt-4 border-t border-[#E9E1D2]/25 flex flex-col md:flex-row justify-between items-center gap-3 drop-shadow">
+            <p>
+                &copy; 2026 Quinta Lina by DFV Company & Co. Todos los derechos reservados. |
+                <a href="https://www.dfvco.com" target="_blank" rel="noopener noreferrer" class="text-[#9A7656] hover:underline">
+                    www.dfvco.com
+                </a>
+            </p>
+            <div class="flex gap-4">
+                <a href="contactenos.html" class="hover:text-[#9A7656] transition">
+                    Contacto VIP
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!-- JAVASCRIPT -->
+    <script>
+        function openModal(content) {
+            const modalContent = document.getElementById('modalContent');
+            modalContent.textContent = content;
+            document.getElementById('serviceModal').classList.remove('hidden');
+        }
+        function closeModal() {
+            document.getElementById('serviceModal').classList.add('hidden');
+        }
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
